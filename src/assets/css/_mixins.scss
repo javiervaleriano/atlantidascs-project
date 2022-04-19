@@ -1,0 +1,7 @@
+@mixin transformar($propiedad, $propiedad2: translateY(0)) {
+	-o-transform: $propiedad $propiedad2;
+	-ms-transform: $propiedad $propiedad2;
+	-moz-transform: $propiedad $propiedad2;
+	-webkit-transform: $propiedad $propiedad2;
+	transform: $propiedad $propiedad2;
+}

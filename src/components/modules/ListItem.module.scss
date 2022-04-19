@@ -1,0 +1,10 @@
+.ListItem {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 0.75rem;
+  align-items: center;
+
+  span {
+    grid-column: 2 / span 1;
+  }
+}

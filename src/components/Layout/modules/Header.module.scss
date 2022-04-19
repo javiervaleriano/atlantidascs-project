@@ -1,0 +1,53 @@
+@import "../../../assets/css/mixins";
+@import "../../../assets/css/breakpoints";
+@import "../../../assets/css/fonts";
+
+// .Header {
+// ESPERAR A TERMINAR LA HOME PAGE
+// 	position: fixed;
+// 	top: 0;
+// 	left: 0;
+// 	width: 100%;
+// }
+
+.Nav {
+	transition: background-color 0.8s;
+
+	.HeaderLogo {
+		width: 100px;
+	}
+
+	@include responsive(tablet) {
+		.HeaderLogo {
+			width: 120px;
+		}
+
+		a {
+			font-size: 1rem;
+		}
+	}
+
+	@include responsive(ldesktop) {
+		.HeaderLogo {
+			width: 170px;
+		}
+
+		a {
+			font-size: 1.1rem;
+		}
+	}
+}
+
+.NavAct {
+	background-color: #ffffff;
+}
+
+.NavToggler {
+	&:focus {
+		box-shadow: none;
+	}
+
+	&:active {
+		border: thin solid #33333350;
+	}
+}

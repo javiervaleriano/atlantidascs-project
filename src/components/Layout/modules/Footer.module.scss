@@ -1,0 +1,88 @@
+@import "../../../assets/css/fonts";
+@import "../../../assets/css/breakpoints";
+@import "../../../assets/css/colors";
+
+.Footer {
+	background-color: $main-green;
+	font-family: $NanumGothic;
+
+	.FooterLink {
+		font-size: 0.9rem;
+		color: $white;
+		padding: 0;
+		margin: 0.5rem 1rem;
+	}
+
+	.IconGrid {
+		display: grid;
+		grid-template-columns: 30px max-content;
+		align-items: center;
+		margin-bottom: 0.3rem;
+		text-align: center;
+
+		svg {
+			font-size: 1.1rem;
+			color: $white;
+		}
+
+		a {
+			color: $white;
+			font-size: 0.9rem;
+			grid-column: 2 / span 1;
+			text-decoration: none;
+		}
+	}
+
+	p {
+		color: $white;
+		font-weight: 800;
+		font-size: 0.85rem;
+	}
+
+	@include responsive(tablet) {
+		.ContainerGrid {
+			padding-right: 1rem;
+			max-width: 1366px;
+			margin: auto;
+
+			ul:last-of-type {
+				align-items: flex-start;
+			}
+		}
+	}
+
+	@include responsive(desktop) {
+		.IconGrid {
+			svg {
+				font-size: 1.25rem;
+			}
+
+			&:first-of-type {
+				margin-right: 0.5rem;
+			}
+		}
+	}
+
+	@include responsive(ldesktop) {
+		.ContainerGrid {
+			margin-top: 0.7rem;
+			padding-bottom: 1.2rem;
+		}
+
+		.FooterLink {
+			font-size: 1rem;
+		}
+
+		.IconGrid {
+			align-items: flex-start;
+
+			a {
+				font-size: 1rem;
+			}
+		}
+
+		p {
+			font-size: 0.9rem;
+		}
+	}
+}

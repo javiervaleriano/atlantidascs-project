@@ -1,0 +1,18 @@
+// Modular SCSS exception to override default NavLinks styles
+@import "../../../assets/css/fonts";
+
+.nav-link {
+	font-family: $NanumGothic;
+	transition: all 0.8s;
+}
+
+.navbar-light .navbar-nav .nav-link.active {
+	color: #46aa64;
+	font-weight: 700;
+}
+
+footer .nav-link.active {
+	color: #ffffff;
+	font-weight: 700;
+	text-decoration: underline;
+}
