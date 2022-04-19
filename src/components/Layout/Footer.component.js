@@ -16,18 +16,18 @@ function Footer() {
 				</ul>
 				<ul className="col-md-2 justify-content-md-end list-unstyled d-flex flex-column flex-md-row mx-auto mx-md-0 pt-2">
 					<li className={`ms-3 ${classes.IconGrid}`}>
-						<i class="fa-solid fa-envelope"></i>
+						<i className="fa-solid fa-envelope"></i>
 						<a href="mailto:contacto@atlantidascs.com">Escríbenos al correo</a>
 					</li>
 					<li className={`ms-3 ${classes.IconGrid}`}>
-						<i class="fa-solid fa-phone"></i>
+						<i className="fa-solid fa-phone"></i>
 						<a href="tel:+582129515081">(0212) 951.50.81</a>
 						<a href="tel:+582129517361">(0212) 951.73.61</a>
 					</li>
 				</ul>
 			</div>
 			<p className="text-center mb-2 mb-xl-1">
-				© ATLANTIDA | Todos los derechos reservados, {currentYear()}
+				© ATLÁNTIDA | Todos los derechos reservados, {currentYear()}
 			</p>
 		</footer>
 	);

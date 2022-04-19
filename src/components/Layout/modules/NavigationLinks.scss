@@ -1,5 +1,7 @@
 // Modular SCSS exception to override default NavLinks styles
 @import "../../../assets/css/fonts";
+@import "../../../assets/css/colors";
+@import "../../../assets/css/breakpoints";
 
 .nav-link {
 	font-family: $NanumGothic;
@@ -10,6 +12,14 @@
 	color: #46aa64;
 	font-weight: 700;
 }
+
+	
+.navbar-light .navbar-nav .nav-link.visible {
+	@include responsive(sdesktop) {
+		color: $white;
+	}
+}
+
 
 footer .nav-link.active {
 	color: #ffffff;

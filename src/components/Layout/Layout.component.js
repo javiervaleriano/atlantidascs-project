@@ -1,14 +1,16 @@
 import React from "react";
 
 // COMPONENTS
+import WhatsApp from "../Layout/WhatsApp.component.js";
 import Footer from "./Footer.component";
 import Header from "./Header.component";
 
-function Layout({ children }) {
+function Layout({ visible, children }) {
 	return (
 		<>
-			<Header />
+			<Header visible={visible} />
 			{children}
+			<WhatsApp />
 			<Footer />
 		</>
 	);

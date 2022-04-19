@@ -1,0 +1,24 @@
+@import "../../assets/css/fonts";
+@import "../../assets/css/colors";
+@import "../../assets/css/breakpoints";
+
+.CotizarBtn {
+  padding: 0.4rem 0.8rem;
+  font-family: $Roboto;
+  font-weight: 700;
+  border: 1px solid transparent;
+  outline: none;
+  border-radius: 5px;
+  background-color: $red-cotizar;
+  color: $white;
+
+  &:active {
+    border: 1px solid $red-cotizar;
+    background-color: transparent;
+    color: $red-cotizar;
+  }
+
+  @include responsive(ldesktop) {
+    font-size: 1.0625rem;
+  }
+}

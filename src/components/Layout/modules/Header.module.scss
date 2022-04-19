@@ -1,14 +1,21 @@
 @import "../../../assets/css/mixins";
 @import "../../../assets/css/breakpoints";
 @import "../../../assets/css/fonts";
+@import "../../../assets/css/colors";
 
-// .Header {
-// ESPERAR A TERMINAR LA HOME PAGE
-// 	position: fixed;
-// 	top: 0;
-// 	left: 0;
-// 	width: 100%;
-// }
+.Header {
+ 	position: fixed;
+ 	top: 0;
+ 	left: 0;
+	width: 100%;
+	z-index: 1000;
+	transition: background-color 0.4s, box-shadow 0.4s;
+}
+
+.HeroVisible {
+	box-shadow: 0 -5px 10px #000000;
+	background-color: $white;
+}
 
 .Nav {
 	transition: background-color 0.8s;
@@ -39,10 +46,12 @@
 }
 
 .NavAct {
-	background-color: #ffffff;
+	background-color: $white;
 }
 
 .NavToggler {
+	background-color: $white;
+	
 	&:focus {
 		box-shadow: none;
 	}

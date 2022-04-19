@@ -1,15 +1,15 @@
 // STYLES
-import "./modules/NavigationLinks.scss";
-
 import React from "react";
 // REACT ROUTER
 import { NavLink } from "react-router-dom";
+import "./modules/NavigationLinks.scss";
 
-function NavigationLinks({ className }) {
+
+function NavigationLinks({ className, isVisible }) {
 	const navLinkActive = isActive =>
 		isActive
 			? `nav-link${className ? " " + className : ""} active`
-			: `nav-link ${className}`;
+			: `nav-link${className ? ` ${className}` : ""}${isVisible ? ` visible` : ""}`;
 
 	return (
 		<>

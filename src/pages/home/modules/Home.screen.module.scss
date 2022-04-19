@@ -1,0 +1,356 @@
+@import "../../../assets/css/breakpoints";
+@import "../../../assets/css/fonts";
+@import "../../../assets/css/colors";
+
+/* SECCIÓN: HERO */
+.HeroContainer {
+	position: relative;
+	background-image: url("../../../assets/images/home_bg.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	//min-height: calc(100vh - 89.58px);
+	min-height: 100vh;
+	text-align: center;
+	
+	.Hero {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		left: 0;
+		top: 0;
+		background-color: rgba(0, 0, 0, 0.5);
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+
+		h1 {
+			font-size: 1.4rem;
+			font-family: $Lora;
+			font-weight: 700;
+			color: $white;
+		}
+	
+		h2 {
+			font-family: $Lora;
+			font-size: 1.05rem;
+			font-weight: 600;
+			color: #d7a98b;
+		}
+	
+		.HeroDivide {
+			display: block;
+			height: 12px;
+			width: 20%;
+			max-width: 75px;
+			background-color: $third-green;
+			margin-top: 1rem;
+			margin-bottom: 1.4rem;
+		}
+	
+		.HeroPgph {
+			font-size: 1rem;
+			font-family: $NanumGothic;
+			font-weight: 400;
+			color: $white;
+		}
+
+		.HeroPgph_breaker {
+			display: block;
+		}
+	}
+
+	@include responsive(tablet) {
+		.Hero {
+			h1 {
+				font-size: 1.5625rem;
+			}
+
+			h2, .HeroPgph {
+				font-size: 1.125rem;
+			}
+
+			.HeroDivide {
+				max-width: 90px;
+			}
+		}
+	}
+
+	@include responsive(sdesktop) {
+		//min-height: calc(100vh - 76.3px);
+
+		.Hero {
+			.HeroPgph_breaker {
+				display: inline;
+			}
+		}
+	}
+
+	@include responsive(ldesktop) {
+		.Hero {
+			h1 {
+				margin-bottom: 0;
+				font-size: 2.125rem;
+			}
+
+			h2 {
+				font-size: 1.3125rem;
+			}
+
+			.HeroDivide {
+				margin: 1.9rem 0;
+			}
+
+			.HeroPgph {
+				font-size: 1.1875rem;
+			}
+		}
+	}
+}
+
+/* SECCIÓN: SERVICIOS */
+.ServicesSection {
+	padding: 2.25rem 1rem;
+	text-align: center;
+
+	h2 {
+		font-family: $Lora;
+		font-weight: 700;
+		font-size: 1.3rem;
+		margin: 0.5rem 0 3rem;
+	}
+
+	.CardsContainer {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.ServiceCard {
+		margin-bottom: 3rem;
+		padding-bottom: 2.25rem;
+		width: 85%;
+		max-width: 300px;
+		background-color: $gray;
+		color: $white;
+		transition: all 0.5s;
+
+		svg {
+			font-size: 2.7rem;
+			margin: 1.2rem;
+		}
+
+		h3 {
+			font-size: 1.25rem;
+			font-family: $Lora;
+			font-weight: 600;
+			margin: 0.7rem 0;
+		}
+
+		p {
+			font-family: $NanumGothic;
+			font-weight: 400;
+			font-size: 0.9rem;
+			margin-bottom: 1.65rem;
+		}
+
+		&:hover {
+			background-color: $second-green;
+		}
+	}
+
+	.ServicesBtn {
+		display: inline-block;
+		font-family: $NanumGothic;
+		font-weight: 400;
+		font-size: 0.9rem;
+		text-decoration: none;
+		background-color: $red-btn;
+		color: $white;
+		border: 1px solid transparent;
+		border-radius: 4px;
+		padding: 0.45rem;
+		margin-bottom: 0.9rem;
+		transition: all 0.5s;
+		
+		svg {
+			transition: color 0.25s;
+			margin-left: 0.3rem;
+		}
+
+		&:hover {
+			background-color: $white;
+			border: 1px solid $red-btn;
+			color: $red-btn;
+
+			svg {
+				color: $red-btn;
+			}
+		}
+	}
+
+	@include responsive(tablet) {
+		h2 {
+			font-size: 1.34375rem;
+		}
+
+		.ServiceCard {
+			p {
+				font-size: 1rem;
+			}
+		}
+
+		.ServicesBtn {
+			font-size: 1rem;
+		}
+	}
+
+	@include responsive(desktop) {
+		.CardsContainer {
+			flex-direction: row;
+			justify-content: space-around;
+			margin-bottom: 1.5rem;
+		}
+
+		.ServiceCard {
+			max-width: 350px;
+
+			p {
+				margin-bottom: 2.5rem;
+			}
+
+			&:last-of-type {
+				padding-left: 0.625rem;
+				padding-right: 0.625rem;
+			}
+		}
+	}
+
+	@include responsive(ldesktop) {
+		h2 {
+			font-size: 1.4375rem;
+		}
+
+		.ServiceCard {
+			svg {
+				font-size: 3.4375rem;
+			}
+
+			h3 {
+				font-size: 1.375rem;
+			}
+		}
+
+		.ServicesBtn {
+			font-size: 1.0625rem;
+
+			svg {
+				margin-left: 0.4375rem;
+			}
+		}
+	}
+}
+
+/* SECCIÓN: QUÉ OFRECEMOS */
+.OfferSection {
+	padding: 1rem 1rem 1.5rem;
+	background-color: #f7f8f9;
+
+	h2 {
+		font-family: $Lora;
+		font-weight: 700;
+		font-size: 1.3rem;
+		margin: 1.25rem 0 1.5rem;
+		text-align: center;
+	}
+
+	.OfferItemsCont {
+		padding: 0;
+	}
+
+	.OfferItem {
+		font-family: $NanumGothic;
+		font-weight: 400;
+		grid-template-columns: 1.5rem 1fr;
+
+		svg {
+			color: $second-green;
+			font-size: 1.2rem;
+		}
+
+		span {
+			font-size: 0.91rem;
+		}
+	}
+
+	@include responsive(tablet) {
+		h2 {
+			font-size: 1.34375rem;
+		}
+
+		.OfferItemsCont {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			grid-template-rows: repeat(3, 1fr);
+			column-gap: 1.5rem;
+			padding: 0;
+		}
+
+		.OfferItem {
+			svg {
+				font-size: 1.3rem;
+			}
+
+			span {
+				font-size: 1rem;
+			}
+		}
+	}
+
+	@include responsive(sdesktop) {
+		padding: 1.5rem 1.5rem 2rem;
+
+		h2 {
+			margin-bottom: 2rem;
+		}
+
+		.OfferItem {
+			&:hover {
+				svg {
+					color: $main-green;
+				}
+			}
+		}
+	}
+
+	@include responsive(desktop) {
+		.OfferItem {
+			grid-template-columns: 2rem 1fr;
+
+			svg {
+				font-size: 1.4rem;
+			}
+		}
+	}
+
+	@include responsive(ldesktop) {
+		h2 {
+			margin-bottom: 2.5rem;
+			font-size: 1.4375rem;
+		}
+
+		.OfferItemsCont {
+			row-gap: 0.5rem;
+		}
+
+		.OfferItem {
+			svg {
+				font-size: 1.5rem;
+			}
+
+			span {
+				font-size: 1.0625rem;
+			}
+		}
+	}
+}

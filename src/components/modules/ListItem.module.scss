@@ -4,7 +4,7 @@
   column-gap: 0.75rem;
   align-items: center;
 
-  span {
-    grid-column: 2 / span 1;
+  svg {
+    justify-self: center;
   }
 }
