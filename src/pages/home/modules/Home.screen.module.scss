@@ -9,7 +9,6 @@
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;
-	//min-height: calc(100vh - 89.58px);
 	min-height: 100vh;
 	text-align: center;
 	
@@ -77,8 +76,6 @@
 	}
 
 	@include responsive(sdesktop) {
-		//min-height: calc(100vh - 76.3px);
-
 		.Hero {
 			.HeroPgph_breaker {
 				display: inline;
@@ -127,17 +124,30 @@
 	}
 
 	.ServiceCard {
+		position: relative;
 		margin-bottom: 3rem;
 		padding-bottom: 2.25rem;
 		width: 85%;
 		max-width: 300px;
-		background-color: $gray;
-		color: $white;
+		background-color: $white;
 		transition: all 0.5s;
 
-		svg {
-			font-size: 2.7rem;
-			margin: 1.2rem;
+		display: grid;
+		grid-template-rows: 45% repeat(2, min-content) 1fr;
+
+		&:hover {
+			background-color: $second-green;
+			color: $white;
+		}
+
+		figure {
+			margin: 0;
+			overflow: hidden;
+			border-radius: 10px;
+		}
+
+		img {
+			max-width: 100%;
 		}
 
 		h3 {
@@ -154,8 +164,14 @@
 			margin-bottom: 1.65rem;
 		}
 
-		&:hover {
-			background-color: $second-green;
+		.ServiceButton {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			bottom: 20px;
+			width: fit-content;
+			margin: 0 auto;
 		}
 	}
 
@@ -207,12 +223,14 @@
 
 	@include responsive(desktop) {
 		.CardsContainer {
-			flex-direction: row;
-			justify-content: space-around;
-			margin-bottom: 1.5rem;
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			justify-content: center;
+			align-items: stretch;
 		}
 
 		.ServiceCard {
+			justify-self: center;
 			max-width: 350px;
 
 			p {
@@ -232,10 +250,6 @@
 		}
 
 		.ServiceCard {
-			svg {
-				font-size: 3.4375rem;
-			}
-
 			h3 {
 				font-size: 1.375rem;
 			}
@@ -254,7 +268,7 @@
 /* SECCIÓN: QUÉ OFRECEMOS */
 .OfferSection {
 	padding: 1rem 1rem 1.5rem;
-	background-color: #f7f8f9;
+	background-image: linear-gradient(to bottom, $white, #f7f8f9 25%);
 
 	h2 {
 		font-family: $Lora;

@@ -1,12 +1,43 @@
 import React from "react";
 import { Link, useOutletContext } from "react-router-dom";
+// ASSETS
+import automovilImg from "../../assets/images/products/automovil.jpg";
+import funerariosImg from "../../assets/images/products/funerarios.jpg";
+import saludImg from "../../assets/images/products/salud.jpg";
 //COMPONENTS
 import Card from "../../components/Card.component";
 import Companies from "../../components/Companies.component";
 import CotizarBtn from "../../components/CotizarBtn.component";
 import ListItem from "../../components/ListItem.component";
+import Publicity from "../../components/Publicity.component";
 // CLASSES
 import classes from "./modules/Home.screen.module.scss";
+
+
+// HOME PRODUCTS
+const homeProducts = [
+	{
+		id: "autoMobile",
+		img: automovilImg,
+		imgAlt: "Parte frontal de un vehículo golpeado",
+		title: "Automóvil",
+		desc: "Asegura tu vehículo y viaja con tranquilidad"
+	},
+	{
+		id: "health",
+		img: saludImg,
+		imgAlt: "Doctor de brazos cruzados con un estetoscopio en mano",
+		title: "Salud",
+		desc: "Asegura tu bienestar y el de tus seres queridos"
+	},
+	{
+		id: "funerary",
+		img: funerariosImg,
+		imgAlt: "Ataúd en una iglesia",
+		title: "Funerarios",
+		desc: "Obtén tranquilidad respaldando a tu grupo familiar con una póliza de Servicio Funerario."
+	}
+];
 
 
 function Home() {
@@ -37,32 +68,21 @@ function Home() {
 			</section>
 			<Companies />
 			<section className={classes.ServicesSection}>
-				<h2>Adquiere nuestras mejores pólizas</h2>
+				<h2>Adquiere nuestros mejores productos</h2>
 				<div className={classes.CardsContainer}>
-					<Card className={classes.ServiceCard}>
-						<i className="fa-solid fa-car"></i>
-						<h3>Automóvil</h3>
-						<p>Asegura tu vehículo y viaja con tranquilidad.</p>
-						<CotizarBtn type="autoMobile" />
-					</Card>
-					<Card className={classes.ServiceCard}>
-						<i className="fa-solid fa-stethoscope"></i>
-						<h3>Salud</h3>
-						<p>Asegura tu bienestar y el de tus seres queridos.</p>
-						<CotizarBtn type="health" />
-					</Card>
-					<Card className={classes.ServiceCard}>
-						<i className="fa-solid fa-dove"></i>
-						<h3>Funerarios</h3>
-						<p>
-							Obtén tranquilidad respaldando a tu grupo familiar con una póliza
-							de Servicio Funerario.
-						</p>
-						<CotizarBtn type="funerary" />
-					</Card>
+					{homeProducts.map(({ id, img, imgAlt, title, desc }) => (
+						<Card className={classes.ServiceCard} key={id}>
+							<figure>
+								<img src={img} alt={imgAlt} loading="lazy" />
+							</figure>
+							<h3>{title}</h3>
+							<p>{desc}</p>
+							<CotizarBtn type={id} title={title} className={classes.ServiceButton} />
+						</Card>
+					))}
 				</div>
-				<Link to="/servicios" className={classes.ServicesBtn}>
-					Todos los servicios
+				<Link to="/productos" className={classes.ServicesBtn}>
+					Todos los productos
 					<i className="fa-solid fa-chevron-right"></i>
 				</Link>
 			</section>
@@ -101,6 +121,7 @@ function Home() {
 					/>
 				</ul>
 			</section>
+			<Publicity />
 		</>
 	);
 }

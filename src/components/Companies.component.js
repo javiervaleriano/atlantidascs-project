@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-
 // ASSETS
 import AtrioSeguros from "../assets/images/aseguradoras/atrio_seguros_logo.png";
 import BanescoSeguros from "../assets/images/aseguradoras/banesco_seguros_logo.png";
@@ -16,23 +15,18 @@ import Piramide from "../assets/images/aseguradoras/piramide_seguros_logo.svg";
 import Venezuela from "../assets/images/aseguradoras/seguros_venezuela.jpg";
 import Uniseguros from "../assets/images/aseguradoras/uniseguros_logo.png";
 import VenezolanaSeguros from "../assets/images/aseguradoras/venezolana_seguros_logo.jpg";
-import { helpWidthDevice } from "../helpers/helpWidthDevice";
+// HELPERS
+import { helpWidthDevice } from "../shared/helpers/helpWidthDevice";
 // CLASSES
 import classes from "./modules/Companies.module.scss";
 
-function Companies() {
+function Companies({ justSlider, className }) {
 	const [pixels, setPixels] = useState(0);
 	const [screenSize, setScreenSize] = useState("");
 	const [imgWidth, setImgWidth] = useState(0);
 	const companyImg = useRef(null);
 
-	const leftSlide = () => {
-		if (pixels > 0) {
-			setPixels(
-				pixels - (companyImg.current.getBoundingClientRect().width + 24)
-			);
-		}
-	};
+	const leftSlide = () => pixels > 0 && setPixels(pixels - (companyImg.current.getBoundingClientRect().width + 24));
 
 	const rightSlide = () => {
 		const slideOpts = {
@@ -53,6 +47,11 @@ function Companies() {
 				),
 			desktop: () =>
 				pixels < imgWidth * 7 + 24 &&
+				setPixels(
+					pixels + (companyImg.current.getBoundingClientRect().width + 24)
+				),
+			interdesktop: () =>
+				pixels < imgWidth * 6 + 24 &&
 				setPixels(
 					pixels + (companyImg.current.getBoundingClientRect().width + 24)
 				),
@@ -77,18 +76,18 @@ function Companies() {
 	}, [imgWidth]);
 
 	useEffect(() => {
-		if (!screenSize) setScreenSize(helpWidthDevice());
+		const adaptComponent = () => setScreenSize(helpWidthDevice());
 
-		window.addEventListener("resize", () => {
-			setScreenSize(helpWidthDevice());
-		});
+		if (!screenSize) adaptComponent();
 
-		return () => window.removeEventListener("resize", helpWidthDevice);
+		window.addEventListener("resize", () => adaptComponent);
+
+		return () => window.removeEventListener("resize", adaptComponent);
 	}, [screenSize]);
 
 	return (
-		<section className={classes.CompaniesSection}>
-			<h2>Las mejores Aseguradoras del país trabajan con nosotros</h2>
+		<section className={`${classes.CompaniesSection} ${className ? className : ""}`}>
+			{!justSlider && <h2>Las mejores Aseguradoras del país trabajan con nosotros</h2>}
 			<div className={classes.CompaniesSlider}>
 				<button type="button" onClick={leftSlide}>
 					<i className="fa-solid fa-chevron-left"></i>

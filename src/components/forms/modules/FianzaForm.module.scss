@@ -1,0 +1,25 @@
+@import "../../../assets/css/colors";
+@import "../../../assets/css/fonts";
+
+.FianzaForm {
+  font-family: $NanumGothic;
+  padding: 0;
+
+  .FianzaLabel {
+    margin: 0;
+  }
+  
+  select {
+    width: 100%;
+    padding: 3.5px 7px;
+    border-radius: 5px;
+    background-color: $white;
+    border: 1px solid $input-gray;
+
+    &:focus {
+      outline: none;
+      border: 1px solid $second-green;
+      background-color: transparent;
+    }
+  }
+}

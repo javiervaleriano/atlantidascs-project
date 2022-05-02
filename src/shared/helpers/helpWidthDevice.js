@@ -7,8 +7,10 @@ export const helpWidthDevice = () => {
 		return "tablet";
 	} else if (viewportW < 1280) {
 		return "sdesktop";
-	} else if (viewportW < 1536) {
+	} else if (viewportW < 1360) {
 		return "desktop";
+	} else if (viewportW < 1536) {
+		return "interdesktop";
 	} else if (viewportW < 1800) {
 		return "ldesktop";
 	} else {

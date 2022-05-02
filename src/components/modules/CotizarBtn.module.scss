@@ -6,6 +6,7 @@
   padding: 0.4rem 0.8rem;
   font-family: $Roboto;
   font-weight: 700;
+  font-size: 0.95rem;
   border: 1px solid transparent;
   outline: none;
   border-radius: 5px;
@@ -18,7 +19,7 @@
     color: $red-cotizar;
   }
 
-  @include responsive(ldesktop) {
-    font-size: 1.0625rem;
+  @include responsive(sdesktop) {
+    font-size: 1rem;
   }
 }

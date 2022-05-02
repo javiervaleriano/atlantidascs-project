@@ -1,0 +1,39 @@
+@import "../../../assets/css/fonts";
+
+.CargoForm {
+  padding: 0;
+  font-family: $NanumGothic;
+}
+
+.FieldRadio {
+  margin: 12px 0 0;
+  padding: 0;
+
+  legend {
+    color: initial;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    margin-bottom: 0;
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+
+    span {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-right: 15px;
+    }
+
+    label {
+      display: inline-block;
+      margin: 0 0 0 3px;
+    }
+  }
+}
+
+.FreightValueInput {
+  margin-top: 12px;
+}

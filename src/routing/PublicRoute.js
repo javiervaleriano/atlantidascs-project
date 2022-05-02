@@ -1,9 +1,9 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Layout from "../components/Layout/Layout.component";
-import { helpWidthDevice } from "../helpers/helpWidthDevice";
 import ScrollToTop from "../hoc/ScrollToTop.component";
-import { useIntersectionElements } from "../hooks/useIntersectionElements";
+import { helpWidthDevice } from "../shared/helpers/helpWidthDevice";
+import { useIntersectionElements } from "../shared/hooks/useIntersectionElements";
 
 
 function PublicRoute() {

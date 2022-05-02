@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
 // PRODUCTS ASSETS
 import accidentesPersonalesImg from "../../assets/images/products/accidentes-personales.jpg";
 import automovilImg from "../../assets/images/products/automovil.jpg";
@@ -14,11 +15,12 @@ import viajeImg from "../../assets/images/products/viaje.jpg";
 import vidaImg from "../../assets/images/products/vida.jpg";
 // COMPONENTS
 import Card from '../../components/Card.component';
+import Companies from '../../components/Companies.component';
 import CotizarBtn from '../../components/CotizarBtn.component';
 // CLASSES
-import classes from "./modules/Services.module.scss";
+import classes from "./modules/Products.module.scss";
 
-
+// VARIABLE AS DB
 const products = [
   {
     id: "personalAccs",
@@ -67,7 +69,7 @@ const products = [
     img: fianzasImg,
     imgAlt: "Dos mujeres en el análisis de documentos",
     title: "Fianzas",
-    desc: "Participa en tu licitación, facilita tus fianzas de fiel cumplimiento, anticipo y retenciones laborales en tiempo récord.",
+    desc: "Participa en tu licitación, facilita tus fianzas de anticipo y fiel cumplimiento, y retenciones laborales en tiempo récord.",
   },
   {
     id: "funerary",
@@ -81,7 +83,7 @@ const products = [
     img: saludImg,
     imgAlt: "Doctor de brazos cruzados con un estetoscopio en mano",
     title: "Salud",
-    desc: "¿Quieres tener resguardados tus gastos médicos en caso de alguna eventualidad?\n\nObtén asistencia médica tanto domiciliaria como telemedicina.",
+    desc: "¿Quieres tener resguardados tus gastos médicos en caso de alguna eventualidad?\n\nObtén asistencia médica (emergencia y cartas avales), así como asistencia domiciliaria y telemedicina.",
   },
   {
     id: "travel",
@@ -95,7 +97,7 @@ const products = [
     img: odontologicoImg,
     imgAlt: "Sala de odontología",
     title: "Servicio odontológico",
-    desc: "¿Sabes lo costoso que puede ser una simple consulta médica?\n\nDisfruta de un servicio con validez a nivel nacional con los mejores centros odontológicos. Protege tu integridad y bienestar dental.",
+    desc: "¿Sabes lo costoso que puede ser una simple consulta diagnóstica?\n\nDisfruta de un servicio con validez a nivel nacional con los mejores centros odontológicos. Protege tu integridad y bienestar dental.",
   },
   {
     id: "life",
@@ -106,26 +108,30 @@ const products = [
   }
 ];
 
-function Services() {
+function Products() {
   return (
     <>
-      <h1 className={classes.Title}>Servicios</h1>
+      <h1 className={classes.Title}>Productos</h1>
       <div className={classes.ProductsContainer}>
         {
-          products.map(product => {
+          products.map(({ id, img, imgAlt, title, desc }) => {
             return (
-              <Card key={product.id} className={classes.ProductCard}>
-                <img src={product.img} alt={product.imgAlt} loading="lazy" />
-                <h2>{product.title}</h2>
-                <p dangerouslySetInnerHTML={{ __html: product.desc.replaceAll("\n", "<br />") }} />
-                <CotizarBtn type={product.id} />
+              <Card key={id} className={classes.ProductCard}>
+                <figure>
+                  <img src={img} alt={imgAlt} loading="lazy" />
+                </figure>
+                <h2>{title}</h2>
+                <p dangerouslySetInnerHTML={{ __html: desc.replaceAll("\n", "<br />") }} />
+                <CotizarBtn type={id} title={title} className={classes.ProductBtn} />
               </Card>
             );
           })
         }
       </div>
+      <p className={classes.GlossaryLink}>¿Te encuentras desorientado con los términos de Seguros? <Link to="/productos/glosario">Haz click aquí para ver un glosario</Link>.</p>
+      <Companies />
     </>
   );
 }
 
-export default Services;
+export default Products;

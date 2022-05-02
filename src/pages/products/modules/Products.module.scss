@@ -1,0 +1,113 @@
+@import "../../../assets/css/breakpoints";
+@import "../../../assets/css/colors";
+@import "../../../assets/css/fonts";
+
+.Title {
+  margin-top: 120px;
+  text-align: center;
+  font-family: $Lora;
+  font-size: 1.3rem;
+  font-weight: 700;
+
+  @include responsive(tablet) {
+    font-size: 1.34375rem;
+  }
+  
+  @include responsive(ldesktop) {
+    margin-top: 150px;
+    font-size: 1.5625rem;
+  }
+}
+
+.ProductsContainer {
+  padding: 1rem;
+  
+  .ProductCard {
+    position: relative;
+    background-color: $white;
+    margin-bottom: 3rem;
+    text-align: center;
+    overflow: hidden;
+
+    figure {
+      margin: 0;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    h2 {
+      margin: 1.5rem 0 1rem;
+      font-family: $Lora;
+      font-weight: 600;
+      font-size: 1.125rem;
+    }
+
+    p {
+      text-align: initial;
+      margin-bottom: 2.8rem;
+      font-family: $NanumGothic;
+      font-weight: 400;
+      font-size: 0.875rem;
+    }
+  }
+
+  @include responsive(tablet) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 352px));
+    column-gap: 2rem;
+    justify-content: center;
+
+    .ProductCard {
+      display: grid;
+      grid-template-rows: 33% repeat(2, min-content) 1fr;
+
+      p {
+        margin-bottom: 0;
+      }
+    }
+
+    .ProductBtn {
+      height: fit-content;
+      width: fit-content;
+      align-self: flex-end;
+      margin: 0 auto;
+    }
+  }
+
+  @include responsive(sdesktop) {
+    column-gap: 3rem;
+
+    .ProductCard {
+      margin-bottom: 4.5rem;
+    }
+  }
+
+  @include responsive(ldesktop) {
+    margin-bottom: 2.5rem;
+
+    .ProductCard {
+      h2 {
+        font-size: 1.1875rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+.GlossaryLink {
+  margin-bottom: 30px;
+  padding-left: 10px;
+  font-family: $Roboto;
+  font-weight: 400;
+  font-size: 1rem;
+}

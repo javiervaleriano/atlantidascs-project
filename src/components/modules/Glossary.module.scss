@@ -1,0 +1,65 @@
+@import "../../assets/css/breakpoints";
+@import "../../assets/css/colors";
+@import "../../assets/css/fonts";
+
+.Glossary {
+  margin-top: 120px;
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align: center;
+
+  h1 {
+    margin-bottom: 35px;
+    font-family: $Lora;
+    font-size: 1.3rem;
+  }
+
+  figure {
+    margin-left: auto;
+    margin-right: auto;
+    height: calc(100vh - 200px);
+    max-width: 750px;
+    overflow-x: hidden;
+    border-radius: 5px;
+    background-color: rgba(246, 247, 248, 0.5);
+
+    img {
+      max-width: 100%;
+      margin-bottom: 5px;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  @include responsive(tablet) {
+    h1 {
+      font-size: 1.34375rem;
+    }
+  }
+
+  @include responsive(sdesktop) {
+    figure {
+      max-width: 915px;
+    }
+  }
+
+  @include responsive(desktop) {
+    figure {
+      max-width: 920px;
+    }
+  }
+
+  @include responsive(ldesktop) {
+    margin-top: 150px;
+
+    h1 {
+      font-size: 1.5625rem;
+    }
+
+    figure {
+      height: calc(100vh - 235px);
+    }
+  }
+}

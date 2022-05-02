@@ -1,0 +1,64 @@
+@import "../../../assets/css/colors";
+@import "../../../assets/css/fonts";
+
+.PatrimonialForm {
+  padding: 0;
+  font-family: $NanumGothic;
+
+  label {
+    margin: 0 0 15px;
+  }
+
+  .TypeHomeLabel, .PropertyUseLabel {
+    margin-bottom: 0;
+  }
+
+  .PatrimonialSelect {
+    width: 100%;
+    border-radius: 5px;
+    padding: 3.5px 7px;
+    background-color: $white;
+    transition: all 0.25s;
+    margin-bottom: 14px;
+    border: 1px solid $input-gray;
+
+    &:focus {
+      outline: none;
+      border: 1px solid $second-green;
+      background-color: transparent;
+    }
+  }
+
+  fieldset {
+    font-size: 0.9375rem;
+    margin-bottom: 5px;
+    
+    legend {
+      color: rgba(65, 161, 93, 0.85);
+      font-size: 1.125rem;
+      font-weight: 400;
+      margin-bottom: 0;
+    }
+
+    p {
+      margin-bottom: 5px;
+    }
+    
+    div {
+      display: flex;
+      align-items: center;
+  
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-right: 15px;
+      }
+    }
+    
+    label {
+      display: inline-block;
+      margin: 0 0 0 3px;
+    }
+  }
+}

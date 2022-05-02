@@ -1,0 +1,95 @@
+@import "../../../assets/css/breakpoints";
+@import "../../../assets/css/colors";
+@import "../../../assets/css/fonts";
+
+.AutoForm {
+  padding: 0;
+  font-family: $NanumGothic;
+
+  fieldset {
+    padding: 0;
+  }
+
+  select {
+    outline: none;
+    width: 100%;
+    border: 1px solid $input-gray;
+    background-color: $white;
+    padding: 3.5px 7px;
+    border-radius: 5px;
+
+    &:focus {
+      outline: none;
+      border: 1px solid $second-green;
+      background-color: transparent;
+    }
+  }
+
+  .SelectLabel {
+    margin: 0;
+  }
+
+  @include responsive(ldesktop) {
+    select {
+      font-size: 1.0625rem;
+    }
+  }
+}
+
+.FieldGender {
+  margin: 12px 0;
+
+  legend {
+    color: initial;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    margin-bottom: 0;
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+
+    span {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-right: 15px;
+    }
+
+    label {
+      display: inline-block;
+      margin: 0 0 0 3px;
+    }
+  }
+
+  @include responsive(ldesktop) {
+    legend {
+      font-size: 1.0625rem;
+    }
+  }
+}
+
+.VehicleData {
+  margin-top: 20px;
+
+  legend {
+    font-size: 0.9375rem;
+    color: rgba(65, 161, 93, 0.85);
+    font-size: 1.125rem;
+  }
+
+  .FieldShield {
+    @extend .FieldGender;
+    
+    legend {
+      margin-top: 4px;
+    }
+  }
+
+  @include responsive(ldesktop) {
+    legend {
+      font-size: 1.28125rem;
+    }
+  }
+}

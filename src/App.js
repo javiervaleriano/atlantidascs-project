@@ -1,41 +1,45 @@
-// STYLES
 import { lazy, React, Suspense } from "react";
 // REACT ROUTER
 import { HashRouter, Route, Routes } from "react-router-dom";
+// STYLES
 import "./App.css";
-// COMPONENTS
-// import Error404 from "./pages/errors/Error404.screen";
+// LOADER
+import Loader from "./components/Loader.component";
+// SCREENS
+import Error404 from "./pages/errors/Error-404.screen";
 import Home from "./pages/home/Home.screen";
-// import Services from "./pages/services/Services.screen";
 // ROUTING
 import PublicRoute from "./routing/PublicRoute";
-
-
-// const About = lazy(() => import("./pages/about/About.screen"));
-const Services = lazy(() => import("./pages/services/Services.screen.js"));
+// SCREENS AND COMPONENT
+const About = lazy(() => import("./pages/about/About.screen")),
+	Contact = lazy(() => import("./pages/contact/Contact.screen")),
+	Products = lazy(() => import("./pages/products/Products.screen.js")),
+	Glossary = lazy(() => import("./components/Glossary.component"));
 
 function App() {
 	return (
-		<Suspense fallback={<h2>Cargando...</h2>}>
+		<Suspense fallback={<Loader />}>
 			<HashRouter>
 				<Routes>
 					{/* PUBLIC ROUTES */}
 					<Route path="/" element={<PublicRoute />}>
 						<Route index element={<Home />} />
 					</Route>
-					{/* <Route path="/sobre-atlantida" element={<PublicRoute />}>
-						<Route index element={<About />} />
-					</Route> */}
-					<Route path="/servicios" element={<PublicRoute />}>
-						<Route index element={<Services />} />
+					<Route path="/productos" element={<PublicRoute />}>
+						<Route index element={<Products />} />
+						<Route path="/productos/glosario" element={<Glossary />} />
 					</Route>
-					{/* <Route path="/contacto" /> */}
+					<Route path="/sobre-atlantida" element={<PublicRoute />}>
+						<Route index element={<About />} />
+					</Route>
+					<Route path="/contacto" element={<PublicRoute />}>
+						<Route index element={<Contact />} />
+					</Route>
 
 					{/* ERROR 404 */}
-					{/* <Route path="*" element={<PublicRoute />}>
-						<Route index element={<Error404 />} />
-					</Route> */}
-					{/* <Route path="*" element={<Error404 />} /> */}
+					<Route path="*" element={<PublicRoute />}>
+						<Route path="*" element={<Error404 />} />
+					</Route>
 				</Routes>
 			</HashRouter>
 		</Suspense>

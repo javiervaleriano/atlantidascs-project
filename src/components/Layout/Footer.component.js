@@ -1,5 +1,5 @@
 // HELPERS
-import { currentYear } from "../../helpers/helpDate";
+import { currentYear } from "../../shared/helpers/helpDate";
 // CLASSES
 import classes from "./modules/Footer.module.scss";
 // COMPONENTS

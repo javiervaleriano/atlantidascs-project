@@ -1,0 +1,50 @@
+@import "../../assets/css/colors";
+@import "../../assets/css/breakpoints";
+
+.Beneficiary {
+  margin-bottom: 12px;
+
+  label:first-of-type {
+    margin: 0;
+  }
+  
+  .Parentage {
+    margin-bottom: 10px;
+  }
+
+  .BeneficiaryBtn {
+    transition: all 0.3s;
+    background-color: $white;
+    border: 1px solid $red-cotizar;
+    padding: 4px 7px;
+    color: $red-cotizar;
+
+    &:hover {
+      color: $white;
+      background-color: $red-cotizar;
+      border: 1px solid $red-cotizar;
+    }
+  }
+
+  @include responsive(sdesktop) {
+    display: grid;
+    grid-template-columns: 40% 40% 1fr;
+    align-items: flex-start;
+    column-gap: 7px;
+
+    .Parentage {
+      padding-top: 2px;
+    }
+
+    .BeneficiaryBtn {
+      align-self: center;
+      padding: 6px;
+    }
+  }
+
+  @include responsive(ldesktop) {
+    .BeneficiaryBtn {
+      font-size: 0.9375rem;
+    }
+  }
+}

@@ -56,7 +56,7 @@
 
 		.CompaniesContainer {
 			img {
-				width: 150px;
+				width: 130px;
 			}
 		}
 	}
@@ -65,15 +65,11 @@
 		h2 {
 			font-size: 1.1875rem;
 		}
+		
+		.CompaniesContainer {
+			img {
+				width: 150px;
+			}
+		}
 	}
-}
-
-@keyframes sliderMove {
-  from {
-    right: 0px;
-  }
-
-  to {
-    right: 1500px;
-  }
 }

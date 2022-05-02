@@ -1,0 +1,98 @@
+@import "../../assets/css/colors";
+@import "../../assets/css/fonts";
+
+.Form {
+  .ProductType {
+    text-align: center;
+    font-family: $Lora;
+    color: $main-green;
+  }
+
+  label {
+    margin-bottom: 14px;
+    display: block;
+    font-family: $NanumGothic;
+    font-weight: 400;
+    font-size: 0.9375rem;
+
+    span {
+      display: block;
+    }
+
+    input,
+    select {
+      border: 1px solid $input-gray;
+      border-radius: 5px;
+      width: 100%;
+      padding: 3.5px 7px;
+      transition: all 0.25s;
+
+      &:focus {
+        outline: none;
+        border: 1px solid $second-green;
+        background-color: transparent;
+      }
+    }
+  }
+
+  textarea {
+    border: 1px solid $input-gray;
+    border-radius: 5px;
+    width: 100%;
+    padding: 3.5px 7px;
+    transition: border 0.25s, background-color 0.25s;
+
+    &:focus {
+      outline: none;
+      border: 1px solid $second-green;
+      background-color: transparent;
+    }
+  }
+  
+  .DocumentInputs {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    column-gap: 10px;
+
+    span {
+      grid-column: 1 / span 2;
+    }
+
+    select {
+      background-color: transparent;
+    }
+  }
+
+  .TextArea {
+    resize: vertical;
+    width: 100%;
+    min-height: 120px;
+    max-height: 200px;
+  }
+}
+
+
+.FormButton {
+  background-color: $red-cotizar;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  color: $white;
+  display: block;
+  font-family: $Roboto;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  margin: 25px auto 0;
+  padding: 0.4rem 0.8rem;
+
+  transition: opacity 0.25s;
+
+  &:active {
+    background-color: transparent;
+    border: 1px solid $red-cotizar;
+    color: $red-cotizar;
+  }
+
+  &:disabled {
+    opacity: 0.25;
+  }
+}

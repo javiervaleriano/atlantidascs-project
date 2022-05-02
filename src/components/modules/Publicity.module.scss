@@ -1,0 +1,77 @@
+@import "../../assets/css/breakpoints";
+@import "../../assets/css/colors";
+@import "../../assets/css/fonts";
+
+.Publicity {
+  background-color: #f7f8f9;
+  padding: 10px 15px 20px;
+  font-family: $NanumGothic;
+
+  h2 {
+    text-align: center;
+    font-family: $Lora;
+    font-size: 1.3rem;
+    margin-bottom: 25px;
+  }
+  
+  figure {
+    display: grid;
+    grid-template-columns: 40% 1fr;
+    column-gap: 13px;
+    align-items: center;
+    justify-items: flex-start;
+    font-size: 0.9rem;
+    max-width: 1536px;
+    margin-left: auto;
+    margin-right: auto;
+
+    &:first-of-type {
+      margin-bottom: 25px;
+    }
+
+    img {
+      width: 100%;
+      max-width: 205px;
+    }
+  }
+
+  @include responsive(tablet) {
+    h2 {
+      font-size: 1.34375rem;
+      margin-bottom: 15px;
+    }
+
+    figure {
+      grid-template-columns: 223px 1fr;
+      column-gap: 0;
+      font-size: 1rem;
+    }
+  }
+
+  @include responsive(sdesktop) {
+    h2 {
+      margin-bottom: 10px;
+    }
+  }
+
+  @include responsive(ldesktop) {
+    padding-top: 25px;
+
+    h2 {
+      font-size: 1.4375rem;
+    }
+
+    figure {
+      font-size: 1.0625rem;
+    }
+  }
+}
+
+a {
+  color: $main-green;
+  transition: color 0.25s;
+
+  &:hover {
+    color: $third-green;
+  }
+}

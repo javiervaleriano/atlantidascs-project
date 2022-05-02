@@ -20,18 +20,18 @@ function NavigationLinks({ className, isVisible }) {
 			</li>
 			<li className="nav-item">
 				<NavLink
-					to="/sobre-atlantida"
+					to="/productos"
 					className={({ isActive }) => navLinkActive(isActive)}
 				>
-					Sobre ATLÁNTIDA
+					Productos
 				</NavLink>
 			</li>
 			<li className="nav-item">
 				<NavLink
-					to="/servicios"
+					to="/sobre-atlantida"
 					className={({ isActive }) => navLinkActive(isActive)}
 				>
-					Servicios
+					Sobre ATLÁNTIDA
 				</NavLink>
 			</li>
 			<li className="nav-item">

@@ -1,15 +1,16 @@
 import "normalize.css";
-import "./index.css";
-
 import React from "react";
 import ReactDOM from "react-dom";
-
 import App from "./App";
+import "./index.css";
 import reportWebVitals from "./reportWebVitals";
+import { ProviderGlobal } from "./store/ContextoGlobal";
 
 ReactDOM.render(
 	<React.StrictMode>
-		<App />
+		<ProviderGlobal>
+			<App />
+		</ProviderGlobal>
 	</React.StrictMode>,
 	document.getElementById("root")
 );
