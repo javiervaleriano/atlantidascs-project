@@ -34,6 +34,18 @@
 		}
 	}
 
+	@include responsive(sdesktop) {
+		a {
+			margin-right: 9px;
+		}
+	}
+
+	@include responsive(desktop) {
+		a {
+			margin-right: 14px;
+		}
+	}
+
 	@include responsive(ldesktop) {
 		.HeaderLogo {
 			width: 170px;
