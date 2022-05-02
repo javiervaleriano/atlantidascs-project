@@ -18,15 +18,22 @@
 }
 
 .Nav {
+	padding: 0;
 	transition: background-color 0.8s;
 
 	.HeaderLogo {
-		width: 100px;
+		width: 150px;
+		height: 90px;
+		background-image: url("../../../assets/images/atlantida-logo-173x110.png");
+		background-size: cover;
+		background-position: center center;
+		background-repeat: no-repeat;
 	}
 
 	@include responsive(tablet) {
 		.HeaderLogo {
-			width: 120px;
+			width: 173px;
+			height: 110px;
 		}
 
 		a {
@@ -47,8 +54,13 @@
 	}
 
 	@include responsive(ldesktop) {
+		padding-top: 4px;
+		padding-bottom: 4px;
+
 		.HeaderLogo {
-			width: 170px;
+			width: 250px;
+			height: 117px;
+			background-image: url("../../../assets/images/atlantida-logo.png");
 		}
 
 		a {

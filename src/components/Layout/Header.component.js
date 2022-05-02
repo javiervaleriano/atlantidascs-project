@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 // REACT ROUTER
 import { Link, useLocation } from "react-router-dom";
-// ASSETS & CLASSES
-import AtlantidaLogo from "../../assets/images/atlantida-logo-173x110.png";
 import classes from "./modules/Header.module.scss";
 // COMPONENTS
 import NavigationLinks from "./NavigationLinks.component";
@@ -21,13 +19,12 @@ function Header({ visible }) {
 			className={`${classes.Header} ${!isVisible ? classes.HeroVisible : ""}`}
 		>
 			<nav
-				className={`navbar navbar-expand-lg navbar-light py-lg-0 ${classes.Nav
+				className={`navbar navbar-expand-lg navbar-light ${classes.Nav
 					} ${headerActive ? classes.NavAct : ""}`}
 			>
 				<div className="container-fluid">
 					<Link to="/" className="navbar-brand py-lg-0">
-						<img
-							src={AtlantidaLogo}
+						<div
 							alt="Logo de Atlántida"
 							className={classes.HeaderLogo}
 						/>

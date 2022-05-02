@@ -34,8 +34,14 @@
   }
 
   @include responsive(tablet) {
+    margin-top: 140px;
+
     h1 {
       font-size: 1.34375rem;
+    }
+
+    figure {
+      height: calc(100vh - 230px);
     }
   }
 
@@ -52,7 +58,7 @@
   }
 
   @include responsive(ldesktop) {
-    margin-top: 150px;
+    margin-top: 160px;
 
     h1 {
       font-size: 1.5625rem;

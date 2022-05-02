@@ -18,8 +18,8 @@ function PublicRoute() {
 				: widthDevice === "sdesktop"
 					? 0.83
 					: widthDevice === "desktop"
-						? 0.77
-						: 0.77,
+						? 0.81
+						: 0.83,
 	});
 
 	return (
