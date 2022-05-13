@@ -18,7 +18,7 @@
       margin-bottom: 0;
     }
   }
-  
+
   h1 {
     margin-top: 120px;
     color: $main-green;
@@ -53,7 +53,7 @@
       color: $main-green;
     }
   }
-  
+
   li::marker {
     color: $main-green;
   }
@@ -106,7 +106,7 @@
 
   @include responsive(ldesktop) {
     h1 {
-      margin-top: 160px;
+      margin-top: 175px;
       font-size: 1.5625rem;
     }
 
@@ -124,10 +124,10 @@
   background-image: url("../../../assets/images/about_imagen.jpg");
   background-position: center center;
   background-size: 100%;
-  
+
   div {
     background-color: rgba(255, 255, 255, 0.82);
-    
+
     img {
       width: 100%;
     }

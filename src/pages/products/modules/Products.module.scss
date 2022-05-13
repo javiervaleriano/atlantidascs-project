@@ -13,16 +13,16 @@
     margin-top: 140px;
     font-size: 1.34375rem;
   }
-  
+
   @include responsive(ldesktop) {
-    margin-top: 160px;
+    margin-top: 175px;
     font-size: 1.5625rem;
   }
 }
 
 .ProductsContainer {
   padding: 1rem;
-  
+
   .ProductCard {
     position: relative;
     background-color: $white;

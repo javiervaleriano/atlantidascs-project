@@ -4,9 +4,9 @@
 @import "../../../assets/css/colors";
 
 .Header {
- 	position: fixed;
- 	top: 0;
- 	left: 0;
+	position: fixed;
+	top: 0;
+	left: 0;
 	width: 100%;
 	z-index: 1000;
 	transition: background-color 0.4s, box-shadow 0.4s;
@@ -59,7 +59,7 @@
 
 		.HeaderLogo {
 			width: 250px;
-			height: 117px;
+			height: 139px;
 			background-image: url("../../../assets/images/atlantida-logo.png");
 		}
 
@@ -75,7 +75,7 @@
 
 .NavToggler {
 	background-color: $white;
-	
+
 	&:focus {
 		box-shadow: none;
 	}
