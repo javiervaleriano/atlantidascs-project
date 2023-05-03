@@ -17,12 +17,12 @@ function Footer() {
 				<ul className="col-md-2 justify-content-md-end list-unstyled d-flex flex-column flex-md-row mx-auto mx-md-0 pt-2">
 					<li className={`ms-3 ${classes.IconGrid}`}>
 						<i className="fa-solid fa-envelope"></i>
-						<a href="mailto:contacto@atlantidascs.com">Escríbenos al correo</a>
+						<a href="mailto:contactoatlantidascss@gmail.com">Escríbenos al correo</a>
 					</li>
 					<li className={`ms-3 ${classes.IconGrid}`}>
 						<i className="fa-solid fa-phone"></i>
-						<a href="tel:+582129515081">(0212) 951.50.81</a>
-						<a href="tel:+582129517361">(0212) 951.73.61</a>
+						<a href="tel:+584122211457">(0412) 221.14.57</a>
+						<a href="tel:+582432412289">(0243) 241.22.89</a>
 					</li>
 				</ul>
 			</div>

@@ -73,7 +73,7 @@ function Form({ formType, typeProduct, title, openedModal }) {
   const submitFormHandler = (e) => {
     e.preventDefault();
 
-    const targetEmail = formType === "contact" ? "contacto@atlantidascs.com" : "marketing@atlantidascs.com";
+    const targetEmail = formType === "contact" ? "contactoatlantidascss@gmail.com" : "servicioatlantidascs@gmail.com";
 
     fetch(`https://formsubmit.co/ajax/${targetEmail}`, {
       method: "POST",
