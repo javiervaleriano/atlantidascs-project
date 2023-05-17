@@ -80,8 +80,6 @@ function Form({ formType, typeProduct, title, openedModal }) {
 
     const targetEmail = formType === "contact" ? CONTACT_EMAIL : QUOTATION_EMAIL;
 
-    console.log(`Backend URL (debe ser producción): ${BACKEND_URL_MAIL}/${formType || 'quotation'}/${targetEmail}`);
-
     try {
       const response = await fetch(`${BACKEND_URL_MAIL}/${formType || 'quotation'}/${targetEmail}`, {
         method: 'POST',
