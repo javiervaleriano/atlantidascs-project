@@ -12,6 +12,8 @@ import CargoForm from "./forms/CargoForm.component";
 import FianzaForm from "./forms/FianzaForm.component";
 import PatrimonialForm from "./forms/PatrimonialForm.component";
 import PersonalForm from "./forms/PersonalForm.component";
+// ENVS
+import { BACKEND_URL_MAIL, CONTACT_EMAIL, QUOTATION_EMAIL } from "../envVars";
 // CLASSES
 import classes from "./modules/Form.module.scss";
 
@@ -70,50 +72,57 @@ function Form({ formType, typeProduct, title, openedModal }) {
     setForm(formStateCopy);
   };
 
-  const submitFormHandler = (e) => {
+  const submitFormHandler = async (e) => {
     e.preventDefault();
 
-    const targetEmail = formType === "contact" ? "contactoatlantidascss@gmail.com" : "servicioatlantidascs@gmail.com";
+    // Deshabilita el botón de envío de formulario
+    setEnabledForm(false);
 
-    fetch(`https://formsubmit.co/ajax/${targetEmail}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify(form)
-    })
-      .then(response => {
-        response.json();
-        setEnabledForm(false);
-      })
-      .then(() => {
-        setEnabledForm(true);
+    const targetEmail = formType === "contact" ? CONTACT_EMAIL : QUOTATION_EMAIL;
 
-        if (openedModal) openedModal(false);
+    console.log(`Backend URL (debe ser producción): ${BACKEND_URL_MAIL}/${formType || 'quotation'}/${targetEmail}`);
 
-        Swal.fire({
-          title: "Formulario enviado correctamente",
-          text: "Nos pondremos en contacto contigo lo antes posible. Gracias por tu interés en nuestro servicio.",
-          icon: "success",
-          iconColor: "#28a745",
-          confirmButtonText: "De acuerdo",
-          confirmButtonColor: "#41a15d"
-        });
+    try {
+      const response = await fetch(`${BACKEND_URL_MAIL}/${formType || 'quotation'}/${targetEmail}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify(form),
+      }),
+        resJson = await response.json();
 
-        if (formType === "contact") e.target.reset();
-      })
-      .catch(error => {
-        console.log(error);
-        Swal.fire({
-          title: "Oops!",
-          text: "Hubo un error al enviar tu formulario. Por favor, vuelve a intentarlo más tarde. Si el problema persiste, contáctanos por WhatsApp o a los números que se encuentran a pie de página.",
-          icon: "error",
-          iconColor: "#ff0000",
-          confirmButtonText: "De acuerdo",
-          confirmButtonColor: "#007bff"
-        })
+      if (!response.ok) throw new Error(resJson.err);
+
+      if (openedModal) openedModal(false);
+
+      Swal.fire({
+        title: "Formulario enviado correctamente",
+        text: "Nos pondremos en contacto contigo lo antes posible. Gracias por tu interés en nuestro servicio.",
+        icon: "success",
+        iconColor: "#28a745",
+        confirmButtonText: "De acuerdo",
+        confirmButtonColor: "#41a15d"
       });
+
+      if (formType === "contact") e.target.reset();
+
+    } catch (error) {
+      console.error(error);
+
+      Swal.fire({
+        title: "Oops!",
+        text: "Hubo un error al enviar tu formulario. Por favor, vuelve a intentarlo más tarde. Si el problema persiste, contáctanos por WhatsApp o a los números que se encuentran a pie de página.",
+        icon: "error",
+        iconColor: "#ff0000",
+        confirmButtonText: "De acuerdo",
+        confirmButtonColor: "#007bff"
+      });
+
+    } finally {
+      setEnabledForm(true);
+    };
   };
 
   return (
