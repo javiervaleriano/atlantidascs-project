@@ -31,7 +31,7 @@ function NavigationLinks({ className, isVisible }) {
 					to="/sobre-atlantida"
 					className={({ isActive }) => navLinkActive(isActive)}
 				>
-					Sobre ATLÁNTIDA
+					Sobre ATLANTIDA
 				</NavLink>
 			</li>
 			<li className="nav-item">
@@ -40,6 +40,14 @@ function NavigationLinks({ className, isVisible }) {
 					className={({ isActive }) => navLinkActive(isActive)}
 				>
 					Contacto
+				</NavLink>
+			</li>
+			<li className="nav-item">
+				<NavLink
+					to="/unete"
+					className={({ isActive }) => navLinkActive(isActive)}
+				>
+					Únete
 				</NavLink>
 			</li>
 		</>

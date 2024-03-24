@@ -14,7 +14,9 @@ import PublicRoute from "./routing/PublicRoute";
 const About = lazy(() => import("./pages/about/About.screen")),
 	Contact = lazy(() => import("./pages/contact/Contact.screen")),
 	Products = lazy(() => import("./pages/products/Products.screen.js")),
-	Glossary = lazy(() => import("./components/Glossary.component"));
+	Glossary = lazy(() => import("./components/Glossary.component")),
+	Join = lazy(() => import("./pages/join/Join.screen.js")),
+	ThankYou = lazy(() => import("./pages/join/ThankYou.screen.js"));
 
 function App() {
 	return (
@@ -34,6 +36,10 @@ function App() {
 					</Route>
 					<Route path="/contacto" element={<PublicRoute />}>
 						<Route index element={<Contact />} />
+					</Route>
+					<Route path="/unete" element={<PublicRoute />}>
+						<Route index element={<Join />} />
+						<Route path="/unete/gracias" element={<ThankYou />} />
 					</Route>
 
 					{/* ERROR 404 */}

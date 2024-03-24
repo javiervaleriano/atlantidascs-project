@@ -9,9 +9,10 @@ export const useDisableInputScroll = () => {
 
     if (input) {
       input.addEventListener("wheel", showInputFunc);
-    } else {
-      console.log("Tiene un valor falsy");
     }
+    // else {
+    //   console.log("Tiene un valor falsy");
+    // }
 
     return () => {
       if (input) input.removeEventListener("wheel", showInputFunc);

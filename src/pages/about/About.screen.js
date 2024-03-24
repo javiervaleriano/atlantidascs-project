@@ -9,7 +9,7 @@ function About() {
   return (
     <article className={classes.About}>
       <section>
-        <h1>¡Somos Atlántida!</h1>
+        <h1>¡Somos Atlantida!</h1>
         <p>Somos una empresa con la capacidad de diseñar, estructurar e implementar los planes y programas de Seguros de cualquier modalidad, que sean adaptables y realmente requeridos por nuestros clientes, con la finalidad siempre de potenciar la empresa para llegar a mayor cantidad de personas necesitadas de protección para sí mismos y sus familiares.</p>
         <Card className={classes.ImgContainer}>
           <div>

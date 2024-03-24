@@ -1,0 +1,117 @@
+@import "../../../assets/css/breakpoints";
+@import "../../../assets/css/colors";
+@import "../../../assets/css/fonts";
+
+.ThankYou {
+  font-family: $Lora;
+  max-width: 1360px;
+  min-height: calc(100vh - 345px);
+  padding-top: 120px;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  margin-bottom: 5rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  h1 {
+    text-align: center;
+    font-size: 1.3125rem;
+  }
+
+  .Video {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    height: 227px;
+    margin: 40px auto;
+  }
+
+  .Text {
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .Icon {
+    margin: 0 10px;
+    position: relative;
+    animation-name: arrow-down;
+    animation-duration: 2.5s;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+  }
+
+  .CustomCallBtn {
+    width: fit-content;
+    display: block;
+    margin: 0 auto;
+    color: $white;
+    background-color: $main-green;
+    padding: 7px 12px;
+    border: 1px solid $main-green;
+    border-radius: 5px;
+    text-decoration-line: none;
+
+    &:hover {
+      color: $main-green;
+      background-color: $white;
+      box-shadow: 5px 10px 31px -9px rgba(0, 0, 0, 0.45) inset;
+      -webkit-box-shadow: 5px 10px 31px -9px rgba(0, 0, 0, 0.45) inset;
+      -moz-box-shadow: 5px 10px 31px -9px rgba(0, 0, 0, 0.45) inset;
+    }
+  }
+
+
+  @include responsive(tablet) {
+    padding-top: 140px;
+    min-height: calc(100vh - 361px);
+
+    h1 {
+      font-size: 1.34375rem;
+    }
+
+    .Video {
+      height: 270px;
+    }
+  }
+
+  @include responsive(sdesktop) {
+    min-height: calc(100vh - 229px);
+  }
+
+  @include responsive(desktop) {
+    .Video {
+      max-width: 675px;
+      height: 375px;
+    }
+  }
+
+  @include responsive(ldesktop) {
+    padding-top: 200px;
+
+    h1 {
+      font-size: 1.5625rem;
+    }
+
+    .Video {
+      max-width: 755px;
+      height: 425px;
+    }
+
+  }
+
+}
+
+@keyframes arrow-down {
+  0% {
+    top: 0;
+  }
+
+  50% {
+    top: 10px;
+  }
+
+  100% {
+    top: 0;
+  }
+}

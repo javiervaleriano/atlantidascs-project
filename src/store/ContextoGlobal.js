@@ -7,6 +7,7 @@ class ProviderGlobal extends Component {
     modalContent: null,
     modalIsOpen: false,
     formType: "",
+    joinMailSent: false,
   };
 
   setModalContent = (content) => {
@@ -21,6 +22,10 @@ class ProviderGlobal extends Component {
     this.setState(() => ({ formType: id }));
   };
 
+  setJoinMailSent = (value) => {
+    this.setState(() => ({ joinMailSent: value }));
+  };
+
   render() {
     const { children } = this.props,
       { modalContent } = this.state,
@@ -28,7 +33,9 @@ class ProviderGlobal extends Component {
       { modalIsOpen } = this.state,
       { setModalIsOpen } = this,
       { formType } = this.state,
-      { setFormType } = this;
+      { setFormType } = this,
+      { joinMailSent } = this.state,
+      { setJoinMailSent } = this;
 
     return (
       <ContextoGlobal.Provider
@@ -39,6 +46,8 @@ class ProviderGlobal extends Component {
           setModalIsOpen,
           formType,
           setFormType,
+          joinMailSent,
+          setJoinMailSent,
         }}>
         {children}
       </ContextoGlobal.Provider>

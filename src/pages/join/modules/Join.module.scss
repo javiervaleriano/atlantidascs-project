@@ -1,0 +1,92 @@
+@import "../../../assets/css/breakpoints";
+@import "../../../assets/css/colors";
+@import "../../../assets/css/fonts";
+
+.Join {
+  font-family: $Lora;
+  max-width: 1360px;
+  padding-top: 120px;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  margin-bottom: 6rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  h1 {
+    margin-top: 50px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 1.3125rem;
+    font-weight: 700;
+  }
+
+  p {
+    font-size: 0.9375rem;
+  }
+
+  .Video {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    height: 227px;
+    margin: auto;
+  }
+
+  .FormContainer {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  @include responsive(tablet) {
+    min-height: calc(100vh - 377px);
+    padding-top: 140px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+
+    h1 {
+      font-size: 1.34375rem;
+    }
+
+    .Video {
+      height: 270px;
+    }
+  }
+
+  @include responsive(sdesktop) {
+    min-height: calc(100vh - 245px);
+
+    .FormContainer {
+      margin-top: 2rem;
+    }
+  }
+
+  @include responsive(desktop) {
+    p {
+      font-size: 1rem;
+    }
+
+    .Video {
+      max-width: 675px;
+      height: 375px;
+    }
+  }
+
+  @include responsive(ldesktop) {
+    padding-top: 200px;
+
+    h1 {
+      font-size: 1.5625rem;
+    }
+
+    .Video {
+      max-width: 755px;
+      height: 425px;
+    }
+
+    .FormContainer {
+      margin-top: 2.5rem;
+    }
+
+  }
+
+}

@@ -11,7 +11,7 @@ function Footer() {
 			<div
 				className={`mb-3 mb-xl-4 border-bottom d-flex justify-content-between justify-content-xl-around ${classes.ContainerGrid}`}
 			>
-				<ul className="nav flex-column flex-md-row justify-content-center pb-3">
+				<ul className="nav flex-column flex-lg-row justify-content-center pb-3">
 					<NavigationLinks className={classes.FooterLink} />
 				</ul>
 				<ul className="col-md-2 justify-content-md-end list-unstyled d-flex flex-column flex-md-row mx-auto mx-md-0 pt-2">
@@ -27,7 +27,7 @@ function Footer() {
 				</ul>
 			</div>
 			<p className="text-center mb-2 mb-xl-1">
-				© ATLÁNTIDA | Todos los derechos reservados, {currentYear()}
+				© ATLANTIDA | Todos los derechos reservados, {currentYear()}
 			</p>
 		</footer>
 	);

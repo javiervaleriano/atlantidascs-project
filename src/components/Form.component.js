@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+// REACT ROUTER
+import { useNavigate } from "react-router-dom";
 // SWEET ALERT
 import Swal from "sweetalert2";
 // HELPERS
@@ -16,9 +18,17 @@ import PersonalForm from "./forms/PersonalForm.component";
 import { BACKEND_URL_MAIL, CONTACT_EMAIL, QUOTATION_EMAIL } from "../envVars";
 // CLASSES
 import classes from "./modules/Form.module.scss";
+// CONTEXT
+import ContextoGlobal from "../store/ContextoGlobal";
+
 
 function Form({ formType, typeProduct, title, openedModal }) {
+  // CONSUME CONTEXT
+  const { setJoinMailSent } = useContext(ContextoGlobal);
+
   // VARIABLES
+  const navigate = useNavigate();
+
   const personal = ["personalAccs", "health", "travel", "dental", "life", "funerary", "helpCancer"],
     patrimonial = ["industryCommerce", "residential"];
 
@@ -78,10 +88,10 @@ function Form({ formType, typeProduct, title, openedModal }) {
     // Deshabilita el botón de envío de formulario
     setEnabledForm(false);
 
-    const targetEmail = formType === "contact" ? CONTACT_EMAIL : QUOTATION_EMAIL;
+    const targetEmail = formType === "product" ? QUOTATION_EMAIL : CONTACT_EMAIL;
 
     try {
-      const response = await fetch(`${BACKEND_URL_MAIL}/${formType || 'quotation'}/${targetEmail}`, {
+      const response = await fetch(`${BACKEND_URL_MAIL}/${formType || 'product'}/${targetEmail}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -95,16 +105,21 @@ function Form({ formType, typeProduct, title, openedModal }) {
 
       if (openedModal) openedModal(false);
 
-      Swal.fire({
-        title: "Formulario enviado correctamente",
-        text: "Nos pondremos en contacto contigo lo antes posible. Gracias por tu interés en nuestro servicio.",
-        icon: "success",
-        iconColor: "#28a745",
-        confirmButtonText: "De acuerdo",
-        confirmButtonColor: "#41a15d"
-      });
+      if (formType === 'join') {
+        setJoinMailSent(true);
+        navigate('/unete/gracias', { replace: true });
+      } else {
+        Swal.fire({
+          title: "Formulario enviado correctamente",
+          text: "Nos pondremos en contacto contigo lo antes posible. Gracias por tu interés en nuestro servicio.",
+          icon: "success",
+          iconColor: "#28a745",
+          confirmButtonText: "De acuerdo",
+          confirmButtonColor: "#41a15d"
+        });
+      }
 
-      if (formType === "contact") e.target.reset();
+      if (formType !== "product") e.target.reset();
 
     } catch (error) {
       console.error(error);
@@ -151,45 +166,61 @@ function Form({ formType, typeProduct, title, openedModal }) {
           onChange={changeValueInputHandler}
           required />
       </label>
-      <label className={classes.DocumentInputs}><span>Documento:</span>
-        <select
-          name="tipo-documento"
-          onChange={changeValueInputHandler}
-          required>
-          <option value="" defaultValue>-</option>
-          <option value="V">V</option>
-          <option value="E">E</option>
-          <option value="J">J</option>
-        </select>
-        <input
-          type="text"
-          name="numero-documento"
-          pattern="^(\d{1,10})$|^(\d{1,10}-\d{1,1})$"
-          title="Escribe un número de documento válido"
-          onChange={changeValueInputHandler}
-          required
-          ref={dScrollDoc} />
-      </label>
+      {formType !== "join" && (
+        <label className={classes.DocumentInputs}><span>Documento:</span>
+          <select
+            name="tipo-documento"
+            onChange={changeValueInputHandler}
+            required>
+            <option value="" defaultValue>-</option>
+            <option value="V">V</option>
+            <option value="E">E</option>
+            <option value="J">J</option>
+          </select>
+          <input
+            type="text"
+            name="numero-documento"
+            pattern="^(\d{1,10})$|^(\d{1,10}-\d{1,1})$"
+            title="Escribe un número de documento válido"
+            onChange={changeValueInputHandler}
+            required
+            ref={dScrollDoc} />
+        </label>
+      )
+      }
       <label><span>Correo electrónico:</span>
         <input
           type="email"
           name="correo"
           placeholder="johndoe@example.com"
-          pattern="^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$"
+          pattern="[\w\.]+@([\w]+\.)+[\w]{2,4}"
           title="Escribe una dirección de correo electrónico válida"
           onChange={changeValueInputHandler}
           required />
       </label>
-      <label><span>Teléfono celular:</span>
-        <input
-          type="tel"
-          name="telefono"
-          placeholder="0412-1234567"
-          pattern="^(04|02)\d{2,2}-?\d{7,7}$"
-          title="El número de teléfono debe ser de 11 caracteres y comenzar en 04 ó 02"
-          onChange={changeValueInputHandler}
-          required />
-      </label>
+      {formType !== "join" && (
+        <label><span>Teléfono celular:</span>
+          <input
+            type="tel"
+            name="telefono"
+            placeholder="0412-1234567"
+            pattern="^(04|02)\d{2,2}-?\d{7,7}$"
+            title="El número de teléfono debe ser de 11 caracteres y comenzar en 04 ó 02"
+            onChange={changeValueInputHandler}
+            required />
+        </label>
+      )}
+      {formType === "join" && (
+        <label><span>Ciudad:</span>
+          <input
+            type="text"
+            name="ciudad"
+            pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$"
+            title="Escribe una ciudad válida"
+            onChange={changeValueInputHandler}
+            required />
+        </label>
+      )}
       {formType === "contact" && (
         <label><span>Mensaje:</span>
           <textarea
@@ -234,7 +265,7 @@ function Form({ formType, typeProduct, title, openedModal }) {
                   <FianzaForm onChange={changeValueInputHandler} />
                 ) : null}
       <button type="submit" className={classes.FormButton} disabled={!enabledForm}>
-        {formType === "contact" ? "Enviar" : "¡Solicitar cotización!"}
+        {formType === "product" ? "¡Solicitar cotización!" : "Enviar"}
       </button>
     </form>
   );
