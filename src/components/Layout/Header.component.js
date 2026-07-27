@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 // REACT ROUTER
 import { Link, useLocation } from "react-router-dom";
 import classes from "./modules/Header.module.scss";
+// ASSETS
+import AtlantidaHeaderLogo from "../../assets/images/atlantida-header-logo.png";
 // COMPONENTS
 import NavigationLinks from "./NavigationLinks.component";
 
@@ -38,11 +40,18 @@ function Header({ visible }) {
 					} ${headerActive ? classes.NavAct : ""}`}
 			>
 				<div className="container-fluid">
-					<Link to="/" className="navbar-brand py-lg-0">
-						<div
-							alt="Logo de Atlántida"
+					<Link to="/" className={`navbar-brand py-lg-0 ${classes.BrandLink}`}>
+						<img
+							src={AtlantidaHeaderLogo}
+							alt="Atlantida, Sociedad de Corretaje de Seguros"
 							className={classes.HeaderLogo}
 						/>
+						<span
+							className={classes.RegulatoryCaption}
+							title="Superintendencia de la Actividad Aseguradora"
+						>
+							Autorizado por la Sudeaseg · Número SCSMP-000045
+						</span>
 					</Link>
 					<button
 						className={`navbar-toggler ${classes.NavToggler}`}

@@ -21,19 +21,37 @@
 	padding: 0;
 	transition: background-color 0.8s;
 
+	.BrandLink {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
 	.HeaderLogo {
-		width: 150px;
-		height: 90px;
-		background-image: url("../../../assets/images/atlantida-logo-173x110.png");
-		background-size: cover;
-		background-position: center center;
-		background-repeat: no-repeat;
+		display: block;
+		width: 135.38px;
+		height: auto;
+	}
+
+	.RegulatoryCaption {
+		display: block;
+		max-width: 135.38px;
+		margin-top: 2px;
+		color: $main-green;
+		font-family: $NanumGothic;
+		font-weight: 700;
+		font-size: 0.45rem;
+		line-height: 1.2;
 	}
 
 	@include responsive(tablet) {
 		.HeaderLogo {
-			width: 173px;
-			height: 110px;
+			width: 156.13px;
+		}
+
+		.RegulatoryCaption {
+			max-width: 156.13px;
+			font-size: 0.5rem;
 		}
 
 		a {
@@ -58,13 +76,12 @@
 		padding-bottom: 4px;
 
 		.HeaderLogo {
-			width: 250px;
-			height: 139px;
-			background-image: url("../../../assets/images/atlantida-logo.png");
+			width: 225.63px;
 		}
 
-		a {
-			font-size: 1.1rem;
+		.RegulatoryCaption {
+			max-width: 225.63px;
+			font-size: 0.6rem;
 		}
 	}
 }

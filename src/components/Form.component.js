@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 // SWEET ALERT
 import Swal from "sweetalert2";
 // HELPERS
@@ -6,6 +6,7 @@ import { currentYear } from "../shared/helpers/helpDate";
 import { helpTodayDate } from "../shared/helpers/helpTodayDate";
 // HOOKS
 import { useDisableInputScroll } from "../shared/hooks/useDisableInputScroll";
+import { useSiteConfig } from "../shared/hooks/useSiteConfig";
 // HELPERS
 import { OCCIDENTE, VENEZUELA_STATES, getRegionByState } from "../shared/helpers/helpRegion";
 import { MUNICIPIOS_BY_STATE } from "../shared/helpers/helpMunicipios";
@@ -31,27 +32,8 @@ function Form({ formType, typeProduct, title, openedModal }) {
     [enabledForm, setEnabledForm] = useState(true),
     [dScrollDoc] = useDisableInputScroll();
 
-  // CONFIGURACIÓN DE CORREOS CORPORATIVOS (leída en tiempo de ejecución desde /config.json,
-  // para poder actualizarla en el hosting sin recompilar ni resubir el build)
-  const [mailConfig, setMailConfig] = useState(null),
-    [mailConfigError, setMailConfigError] = useState(false);
-
-  useEffect(() => {
-    let ignore = false;
-
-    fetch('/config.json', { cache: 'no-store' })
-      .then((res) => {
-        if (!res.ok) throw new Error('No se pudo obtener config.json');
-        return res.json();
-      })
-      .then((data) => { if (!ignore) setMailConfig(data); })
-      .catch((error) => {
-        console.error(error);
-        if (!ignore) setMailConfigError(true);
-      });
-
-    return () => { ignore = true; };
-  }, []);
+  // Correos corporativos, leídos en tiempo de ejecución desde /config.json
+  const [mailConfig, mailConfigError] = useSiteConfig();
 
   // HELPERS
   const today = helpTodayDate(),

@@ -53,7 +53,7 @@ function Home() {
 				<div className={classes.Hero}>
 					<h2 className="fw-normal">Asesoría e Intermediación de Seguros</h2>
 					<h1 className="fw-bold">
-						ATLÁNTIDA
+						ATLANTIDA
 						<br />
 						Sociedad de Corretaje de Seguros
 					</h1>

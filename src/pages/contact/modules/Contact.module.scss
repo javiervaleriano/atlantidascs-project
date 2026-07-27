@@ -1,6 +1,7 @@
 @import "../../../assets/css/breakpoints";
 @import "../../../assets/css/colors";
 @import "../../../assets/css/fonts";
+@import "../../../assets/css/layout";
 
 .Contact {
   font-family: $Lora;
@@ -16,7 +17,7 @@
   }
 
   h1 {
-    margin-top: 120px;
+    @include header-offset;
     text-align: center;
     font-size: 1.3125rem;
   }
@@ -44,7 +45,6 @@
 
   @include responsive(tablet) {
     h1 {
-      margin-top: 140px;
       font-size: 1.34375rem;
     }
   }
@@ -85,7 +85,6 @@
 
   @include responsive(ldesktop) {
     h1 {
-      margin-top: 175px;
       font-size: 1.5625rem;
     }
 

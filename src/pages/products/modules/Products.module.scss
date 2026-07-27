@@ -1,21 +1,20 @@
 @import "../../../assets/css/breakpoints";
 @import "../../../assets/css/colors";
 @import "../../../assets/css/fonts";
+@import "../../../assets/css/layout";
 
 .Title {
-  margin-top: 120px;
+  @include header-offset;
   text-align: center;
   font-family: $Lora;
   font-size: 1.3rem;
   font-weight: 700;
 
   @include responsive(tablet) {
-    margin-top: 140px;
     font-size: 1.34375rem;
   }
 
   @include responsive(ldesktop) {
-    margin-top: 175px;
     font-size: 1.5625rem;
   }
 }

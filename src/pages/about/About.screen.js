@@ -9,17 +9,20 @@ function About() {
   return (
     <article className={classes.About}>
       <section>
-        <h1>¡Somos Atlántida!</h1>
+        <h1>¡Somos Atlantida!</h1>
         <p>Somos una empresa con la capacidad de diseñar, estructurar e implementar los planes y programas de Seguros de cualquier modalidad, que sean adaptables y realmente requeridos por nuestros clientes, con la finalidad siempre de potenciar la empresa para llegar a mayor cantidad de personas necesitadas de protección para sí mismos y sus familiares.</p>
         <Card className={classes.ImgContainer}>
           <div>
-            <img src={AtlantidaLogo} alt="Logo de Atlántida C.A." />
+            <img src={AtlantidaLogo} alt="Atlantida, Sociedad de Corretaje de Seguros" />
+            <p className={classes.RegulatoryCaption}>
+              Autorizado por la Superintendencia de la Actividad Aseguradora bajo el número SCSMP-000045
+            </p>
           </div>
         </Card>
       </section>
       <section>
         <h2><span>Más de 30 años</span> en el mercado asegurador</h2>
-        <p><span>Atlántida C.A.</span> está siempre fiel a su compromiso de brindar el mejor servicio y diseñar productos adaptados a la realidad actual.</p>
+        <p><span>Atlantida C.A.</span> está siempre fiel a su compromiso de brindar el mejor servicio y diseñar productos adaptados a la realidad actual.</p>
         <p>Realizamos alianzas estratégicas con las aseguradoras de más prestigio en el país a fin de juntos garantizar productos de acuerdo a las características y necesidades específicas de nuestros actuales y potenciales clientes.</p>
       </section>
       <section>

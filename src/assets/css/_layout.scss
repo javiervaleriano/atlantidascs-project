@@ -1,0 +1,21 @@
+@import "breakpoints";
+
+// Altura del header fijo (ver Header.component.js / Header.module.scss) más un
+// margen de respiro, para que el contenido de cada página no quede oculto detrás
+// de él. Si el tamaño del header cambia, actualiza solo estas tres variables:
+// el resto del sitio se ajusta automáticamente a través del mixin header-offset.
+$header-offset: 80px;
+$header-offset-tablet: 90px;
+$header-offset-ldesktop: 125px;
+
+@mixin header-offset($property: margin-top) {
+	#{$property}: $header-offset;
+
+	@include responsive(tablet) {
+		#{$property}: $header-offset-tablet;
+	}
+
+	@include responsive(ldesktop) {
+		#{$property}: $header-offset-ldesktop;
+	}
+}

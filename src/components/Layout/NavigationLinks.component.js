@@ -31,7 +31,7 @@ function NavigationLinks({ className, isVisible }) {
 					to="/sobre-atlantida"
 					className={({ isActive }) => navLinkActive(isActive)}
 				>
-					Sobre ATLÁNTIDA
+					Sobre ATLANTIDA
 				</NavLink>
 			</li>
 			<li className="nav-item">
