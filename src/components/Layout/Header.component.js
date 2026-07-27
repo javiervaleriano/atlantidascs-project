@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 // REACT ROUTER
 import { Link, useLocation } from "react-router-dom";
 import classes from "./modules/Header.module.scss";
@@ -9,10 +9,25 @@ import NavigationLinks from "./NavigationLinks.component";
 function Header({ visible }) {
 	// State with only header scope
 	const [headerActive, setHeaderActive] = useState(false);
+	// Reference to the Bootstrap collapse element, needed to close it programmatically
+	const navCollapseRef = useRef(null);
 
 	// VARIABLES
 	const location = useLocation(),
 		isVisible = location.pathname === "/" && visible;
+
+	// Bootstrap's collapse only reacts to the toggler button click, so clicking a
+	// nav link on mobile never closes the menu unless we hide it ourselves here.
+	const closeMobileNav = () => {
+		const navEl = navCollapseRef.current;
+		if (!navEl || !navEl.classList.contains("show") || !window.bootstrap) return;
+
+		const bsCollapse =
+			window.bootstrap.Collapse.getInstance(navEl) ||
+			new window.bootstrap.Collapse(navEl, { toggle: false });
+		bsCollapse.hide();
+		setHeaderActive(false);
+	};
 
 	return (
 		<header
@@ -44,6 +59,8 @@ function Header({ visible }) {
 					<div
 						className={`collapse navbar-collapse ${classes.Links}`}
 						id="navbarSupportedContent"
+						ref={navCollapseRef}
+						onClick={closeMobileNav}
 					>
 						<ul className="navbar-nav me-auto me-lg-0 ms-lg-auto mb-2 mb-lg-0">
 							<NavigationLinks isVisible={isVisible} />

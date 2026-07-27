@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // SWEET ALERT
 import Swal from "sweetalert2";
 // HELPERS
@@ -6,6 +6,9 @@ import { currentYear } from "../shared/helpers/helpDate";
 import { helpTodayDate } from "../shared/helpers/helpTodayDate";
 // HOOKS
 import { useDisableInputScroll } from "../shared/hooks/useDisableInputScroll";
+// HELPERS
+import { OCCIDENTE, VENEZUELA_STATES, getRegionByState } from "../shared/helpers/helpRegion";
+import { MUNICIPIOS_BY_STATE } from "../shared/helpers/helpMunicipios";
 // COMPONENTS
 import AutoForm from "./forms/AutoForm.component";
 import CargoForm from "./forms/CargoForm.component";
@@ -13,9 +16,11 @@ import FianzaForm from "./forms/FianzaForm.component";
 import PatrimonialForm from "./forms/PatrimonialForm.component";
 import PersonalForm from "./forms/PersonalForm.component";
 // ENVS
-import { BACKEND_URL_MAIL, CONTACT_EMAIL, QUOTATION_EMAIL } from "../envVars";
+import { BACKEND_URL_MAIL } from "../envVars";
 // CLASSES
 import classes from "./modules/Form.module.scss";
+
+const OTRO_MUNICIPIO = "Otro";
 
 function Form({ formType, typeProduct, title, openedModal }) {
   // VARIABLES
@@ -25,6 +30,28 @@ function Form({ formType, typeProduct, title, openedModal }) {
   const [beneficiaries, setBeneficiaries] = useState([]),
     [enabledForm, setEnabledForm] = useState(true),
     [dScrollDoc] = useDisableInputScroll();
+
+  // CONFIGURACIÓN DE CORREOS CORPORATIVOS (leída en tiempo de ejecución desde /config.json,
+  // para poder actualizarla en el hosting sin recompilar ni resubir el build)
+  const [mailConfig, setMailConfig] = useState(null),
+    [mailConfigError, setMailConfigError] = useState(false);
+
+  useEffect(() => {
+    let ignore = false;
+
+    fetch('/config.json', { cache: 'no-store' })
+      .then((res) => {
+        if (!res.ok) throw new Error('No se pudo obtener config.json');
+        return res.json();
+      })
+      .then((data) => { if (!ignore) setMailConfig(data); })
+      .catch((error) => {
+        console.error(error);
+        if (!ignore) setMailConfigError(true);
+      });
+
+    return () => { ignore = true; };
+  }, []);
 
   // HELPERS
   const today = helpTodayDate(),
@@ -41,6 +68,24 @@ function Form({ formType, typeProduct, title, openedModal }) {
       ...form,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const changeEstadoHandler = (e) => {
+    const formStateCopy = { ...form, estado: e.target.value };
+
+    // El municipio (y su valor libre "Otro") ya no aplica al cambiar de estado
+    delete formStateCopy.municipio;
+    delete formStateCopy["municipio-otro"];
+
+    setForm(formStateCopy);
+  };
+
+  const changeMunicipioHandler = (e) => {
+    const formStateCopy = { ...form, municipio: e.target.value };
+
+    if (e.target.value !== OTRO_MUNICIPIO) delete formStateCopy["municipio-otro"];
+
+    setForm(formStateCopy);
   };
 
   const addBeneficiaryHandler = () => {
@@ -78,7 +123,26 @@ function Form({ formType, typeProduct, title, openedModal }) {
     // Deshabilita el botón de envío de formulario
     setEnabledForm(false);
 
-    const targetEmail = formType === "contact" ? CONTACT_EMAIL : QUOTATION_EMAIL;
+    const targetEmail = formType === "contact"
+      ? mailConfig?.CONTACT_EMAIL
+      : getRegionByState(form.estado) === OCCIDENTE
+        ? mailConfig?.QUOTATION_EMAIL_OCCIDENTE
+        : mailConfig?.QUOTATION_EMAIL_ORIENTE;
+
+    if (!targetEmail) {
+      setEnabledForm(true);
+
+      Swal.fire({
+        title: "Oops!",
+        text: "Esta cotización aún no puede procesarse para tu ubicación. Por favor contáctanos por WhatsApp o a los números que se encuentran a pie de página.",
+        icon: "error",
+        iconColor: "#ff0000",
+        confirmButtonText: "De acuerdo",
+        confirmButtonColor: "#007bff"
+      });
+
+      return;
+    }
 
     try {
       const response = await fetch(`${BACKEND_URL_MAIL}/${formType || 'quotation'}/${targetEmail}`, {
@@ -175,7 +239,7 @@ function Form({ formType, typeProduct, title, openedModal }) {
           type="email"
           name="correo"
           placeholder="johndoe@example.com"
-          pattern="^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$"
+          pattern="^[\w.\-]+@[a-z\d.\-]+\.[a-z]{2,}$"
           title="Escribe una dirección de correo electrónico válida"
           onChange={changeValueInputHandler}
           required />
@@ -190,6 +254,46 @@ function Form({ formType, typeProduct, title, openedModal }) {
           onChange={changeValueInputHandler}
           required />
       </label>
+      {formType === "product" && (
+        <label><span>Estado:</span>
+          <select
+            name="estado"
+            onChange={changeEstadoHandler}
+            required>
+            <option value="">-</option>
+            {VENEZUELA_STATES.map(({ value }) => (
+              <option key={value} value={value}>{value}</option>
+            ))}
+          </select>
+        </label>
+      )}
+      {formType === "product" && (
+        <label><span>Municipio:</span>
+          <select
+            key={form.estado || "sin-estado"}
+            name="municipio"
+            onChange={changeMunicipioHandler}
+            disabled={!form.estado}
+            required>
+            <option value="">{form.estado ? "-" : "Primero selecciona un estado"}</option>
+            {(MUNICIPIOS_BY_STATE[form.estado] || []).map((municipio) => (
+              <option key={municipio} value={municipio}>{municipio}</option>
+            ))}
+            <option value={OTRO_MUNICIPIO}>Otro</option>
+          </select>
+        </label>
+      )}
+      {formType === "product" && form.municipio === OTRO_MUNICIPIO && (
+        <label><span>Especifica tu municipio:</span>
+          <input
+            type="text"
+            name="municipio-otro"
+            pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$"
+            title="Escribe un municipio válido"
+            onChange={changeValueInputHandler}
+            required />
+        </label>
+      )}
       {formType === "contact" && (
         <label><span>Mensaje:</span>
           <textarea
@@ -233,9 +337,14 @@ function Form({ formType, typeProduct, title, openedModal }) {
                 ? (
                   <FianzaForm onChange={changeValueInputHandler} />
                 ) : null}
-      <button type="submit" className={classes.FormButton} disabled={!enabledForm}>
+      <button type="submit" className={classes.FormButton} disabled={!enabledForm || !mailConfig}>
         {formType === "contact" ? "Enviar" : "¡Solicitar cotización!"}
       </button>
+      {mailConfigError && (
+        <p className={classes.ConfigError}>
+          No se pudo cargar la configuración del formulario. Por favor recarga la página o contáctanos por WhatsApp.
+        </p>
+      )}
     </form>
   );
 }

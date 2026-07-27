@@ -1,0 +1,6 @@
+{
+  "_README": "Correos corporativos usados por los formularios del sitio. Puedes editar este archivo directamente en el hosting (a2hosting) para cambiar un destinatario, sin necesidad de recompilar ni resubir el build. QUOTATION_EMAIL_OCCIDENTE debe completarse con el correo real antes de que el sitio pueda enviar cotizaciones de esa región; mientras esté vacío, el formulario le mostrará un aviso al usuario en vez de enviar el correo.",
+  "CONTACT_EMAIL": "contactoatlantidascss@gmail.com",
+  "QUOTATION_EMAIL_ORIENTE": "servicioatlantidascs@gmail.com",
+  "QUOTATION_EMAIL_OCCIDENTE": "servicioatlantida.occidente@gmail.com"
+}

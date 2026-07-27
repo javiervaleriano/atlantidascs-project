@@ -96,3 +96,12 @@
     opacity: 0.25;
   }
 }
+
+.ConfigError {
+  color: $red-error;
+  text-align: center;
+  font-family: $NanumGothic;
+  font-size: 0.8125rem;
+  margin: 10px auto 0;
+  max-width: 320px;
+}

@@ -1,172 +1,111 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 // ASSETS
 import AtrioSeguros from "../assets/images/aseguradoras/atrio_seguros_logo.png";
 import BanescoSeguros from "../assets/images/aseguradoras/banesco_seguros_logo.png";
-import EstarSeguros from "../assets/images/aseguradoras/estarseguros_logo.jpg";
-import HispanaSeguros from "../assets/images/aseguradoras/hispana_logo.png";
-import Iberoseguros from "../assets/images/aseguradoras/iberoseguros_logo.png";
-import SegurosCaracas from "../assets/images/aseguradoras/logo_seguros_caracas.svg";
-import Universitas from "../assets/images/aseguradoras/logo_universitas.svg";
-import Mapfre from "../assets/images/aseguradoras/mapfre_logo.svg";
-import Mercantil from "../assets/images/aseguradoras/mercantil_logo.svg";
-import NuevoMundo from "../assets/images/aseguradoras/nuevo_mundo_logo.jpg";
-import Oriental from "../assets/images/aseguradoras/oriental_seguros_logo.svg";
-import Piramide from "../assets/images/aseguradoras/piramide_seguros_logo.svg";
-import Venezuela from "../assets/images/aseguradoras/seguros_venezuela.jpg";
+import EstarSeguros from "../assets/images/aseguradoras/estar_seguros_logo.png";
+import HispanaSeguros from "../assets/images/aseguradoras/hispana_seguros_logo.png";
+import LiderSeguros from "../assets/images/aseguradoras/lider_seguros_logo.png";
+import Mapfre from "../assets/images/aseguradoras/mapfre_logo.png";
+import Mercantil from "../assets/images/aseguradoras/mercantil_logo.png";
+import NuevoMundo from "../assets/images/aseguradoras/nuevo_mundo_logo.png";
+import OceanicaSeguros from "../assets/images/aseguradoras/oceanica_seguros_logo.png";
+import Oriental from "../assets/images/aseguradoras/oriental_seguros_logo.png";
+import RealSeguros from "../assets/images/aseguradoras/real_seguros_logo.svg";
+import SegurosCaracas from "../assets/images/aseguradoras/seguros_caracas_logo.png";
+import Universitas from "../assets/images/aseguradoras/universitas_logo.svg";
 import Uniseguros from "../assets/images/aseguradoras/uniseguros_logo.png";
-import VenezolanaSeguros from "../assets/images/aseguradoras/venezolana_seguros_logo.jpg";
-// HELPERS
-import { helpWidthDevice } from "../shared/helpers/helpWidthDevice";
+import Venezuela from "../assets/images/aseguradoras/seguros_venezuela_logo.png";
+import VenezolanaSeguros from "../assets/images/aseguradoras/venezolana_seguros_logo.png";
 // CLASSES
 import classes from "./modules/Companies.module.scss";
 
+// COMPANIES DATA
+const insurers = [
+	{ id: "banesco", name: "Banesco Seguros", logo: BanescoSeguros, link: "https://www.banescoseguros.com/" },
+	{ id: "atrio", name: "Atrio Seguros", logo: AtrioSeguros, link: "https://atriosegurosweb.com/" },
+	{ id: "estar", name: "Estar Seguros", logo: EstarSeguros, link: "https://www.estarseguros.com/" },
+	{ id: "hispana", name: "Hispana Seguros", logo: HispanaSeguros, link: "https://hispana.com.ve/" },
+	{ id: "venezolana", name: "La Venezolana de Seguros y Vida", logo: VenezolanaSeguros, link: "https://lavenezolanadeseguros.com/" },
+	{ id: "mapfre", name: "MAPFRE", logo: Mapfre, link: "https://www.mapfre.com.ve/" },
+	{ id: "mercantil", name: "Mercantil Seguros", logo: Mercantil, link: "https://www.mercantilseguros.com/" },
+	{ id: "nuevoMundo", name: "Seguros Nuevo Mundo", logo: NuevoMundo, link: "https://www.nuevomundo.com.ve/" },
+	{ id: "oriental", name: "La Oriental de Seguros", logo: Oriental, link: "https://www.laoriental.com/" },
+	{ id: "segurosCaracas", name: "Seguros Caracas", logo: SegurosCaracas, link: "https://www.seguroscaracas.com/" },
+	{ id: "universitas", name: "Seguros Universitas", logo: Universitas, link: "https://www.segurosuniversitas.com/" },
+	{ id: "venezuela", name: "Seguros Venezuela", logo: Venezuela, link: "https://www.segurosvenezuela.com/" },
+	{ id: "oceanica", name: "Oceánica de Seguros", logo: OceanicaSeguros, link: "https://oceanicadeseguros.com/" },
+	{ id: "uniseguros", name: "Uniseguros", logo: Uniseguros, link: "https://uniseguros.com/" },
+	{ id: "real", name: "Real Seguros", logo: RealSeguros, link: "https://real-seguros.com/" },
+	{ id: "lider", name: "Líder de Seguros", logo: LiderSeguros, link: "https://liderdeseguros.com/" },
+];
+
 function Companies({ justSlider, className }) {
-	const [pixels, setPixels] = useState(0);
-	const [screenSize, setScreenSize] = useState("");
-	const [imgWidth, setImgWidth] = useState(0);
-	const companyImg = useRef(null);
+	const trackRef = useRef(null);
+	const [canScrollLeft, setCanScrollLeft] = useState(false);
+	const [canScrollRight, setCanScrollRight] = useState(false);
 
-	const leftSlide = () => pixels > 0 && setPixels(pixels - (companyImg.current.getBoundingClientRect().width + 24));
+	const updateArrows = useCallback(() => {
+		const track = trackRef.current;
+		if (!track) return;
 
-	const rightSlide = () => {
-		const slideOpts = {
-			mobile: () =>
-				pixels < imgWidth * 12 + 24 &&
-				setPixels(
-					pixels + (companyImg.current.getBoundingClientRect().width + 24)
-				),
-			tablet: () =>
-				pixels < imgWidth * 10 + 24 &&
-				setPixels(
-					pixels + (companyImg.current.getBoundingClientRect().width + 24)
-				),
-			sdesktop: () =>
-				pixels < imgWidth * 9 + 24 &&
-				setPixels(
-					pixels + (companyImg.current.getBoundingClientRect().width + 24)
-				),
-			desktop: () =>
-				pixels < imgWidth * 7 + 24 &&
-				setPixels(
-					pixels + (companyImg.current.getBoundingClientRect().width + 24)
-				),
-			interdesktop: () =>
-				pixels < imgWidth * 6 + 24 &&
-				setPixels(
-					pixels + (companyImg.current.getBoundingClientRect().width + 24)
-				),
-			ldesktop: () =>
-				pixels < imgWidth * 7 + 24 &&
-				setPixels(
-					pixels + (companyImg.current.getBoundingClientRect().width + 24)
-				),
-			xldesktop: () =>
-				pixels < imgWidth * 4 + 24 &&
-				setPixels(
-					pixels + (companyImg.current.getBoundingClientRect().width + 24)
-				),
+		setCanScrollLeft(track.scrollLeft > 1);
+		setCanScrollRight(track.scrollLeft + track.clientWidth < track.scrollWidth - 1);
+	}, []);
+
+	useEffect(() => {
+		const track = trackRef.current;
+		if (!track) return;
+
+		updateArrows();
+
+		track.addEventListener("scroll", updateArrows, { passive: true });
+		window.addEventListener("resize", updateArrows);
+
+		return () => {
+			track.removeEventListener("scroll", updateArrows);
+			window.removeEventListener("resize", updateArrows);
 		};
+	}, [updateArrows]);
 
-		slideOpts[screenSize]();
+	const slide = (direction) => {
+		const track = trackRef.current;
+		if (!track) return;
+
+		track.scrollBy({ left: direction * track.clientWidth * 0.8, behavior: "smooth" });
 	};
-
-	// EFFECTS
-	useEffect(() => {
-		setImgWidth(companyImg.current.getBoundingClientRect().width + 24);
-	}, [imgWidth]);
-
-	useEffect(() => {
-		const adaptComponent = () => setScreenSize(helpWidthDevice());
-
-		if (!screenSize) adaptComponent();
-
-		window.addEventListener("resize", () => adaptComponent);
-
-		return () => window.removeEventListener("resize", adaptComponent);
-	}, [screenSize]);
 
 	return (
 		<section className={`${classes.CompaniesSection} ${className ? className : ""}`}>
 			{!justSlider && <h2>Las mejores Aseguradoras del país trabajan con nosotros</h2>}
 			<div className={classes.CompaniesSlider}>
-				<button type="button" onClick={leftSlide}>
+				<button
+					type="button"
+					onClick={() => slide(-1)}
+					disabled={!canScrollLeft}
+					aria-label="Ver aseguradoras anteriores"
+				>
 					<i className="fa-solid fa-chevron-left"></i>
 				</button>
-				<figure className={classes.CompaniesContainer}>
-					<img
-						src={AtrioSeguros}
-						alt="Atrio Seguros"
-						ref={companyImg}
-						style={{ right: `${pixels}px` }}
-					/>
-					<img
-						src={BanescoSeguros}
-						alt="Banesco Seguros"
-						style={{ right: `${pixels}px` }}
-					/>
-					<img
-						src={EstarSeguros}
-						alt="Estar Seguros"
-						style={{ right: `${pixels}px` }}
-					/>
-					<img
-						src={HispanaSeguros}
-						alt="Hispana de Seguros"
-						style={{ right: `${pixels}px` }}
-					/>
-					<img
-						src={Iberoseguros}
-						alt="Iberoseguros"
-						style={{ right: `${pixels}px` }}
-					/>
-					<img
-						src={VenezolanaSeguros}
-						alt="La Venezolana de Seguros y Vida"
-						style={{ right: `${pixels}px` }}
-					/>
-					<img src={Mapfre} alt="MAPFRE" style={{ right: `${pixels}px` }} />
-					<img
-						src={Mercantil}
-						alt="Mercantil Seguros"
-						style={{ right: `${pixels}px` }}
-					/>
-					<img
-						src={NuevoMundo}
-						alt="Seguros Nuevo Mundo"
-						style={{ right: `${pixels}px` }}
-					/>
-					<img
-						src={Oriental}
-						alt="La Oriental de Seguros"
-						style={{ right: `${pixels}px` }}
-					/>
-					<img
-						src={SegurosCaracas}
-						alt="Seguros Caracas"
-						style={{ right: `${pixels}px` }}
-					/>
-					<img
-						src={Universitas}
-						alt="Seguros Universitas"
-						style={{ right: `${pixels}px` }}
-					/>
-					<img
-						src={Venezuela}
-						alt="Seguros Venezuela"
-						style={{ right: `${pixels}px` }}
-					/>
-					<img
-						src={Piramide}
-						alt="Pirámide Seguros"
-						style={{ right: `${pixels}px` }}
-					/>
-					<img
-						src={Uniseguros}
-						alt="Uniseguros"
-						style={{ right: `${pixels}px` }}
-					/>
-				</figure>
-				<button type="button" onClick={rightSlide}>
+				<ul className={classes.CompaniesContainer} ref={trackRef}>
+					{insurers.map(({ id, name, logo, link }) => (
+						<li key={id} className={classes.CompanyItem}>
+							<a
+								href={link}
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label={`Ir al sitio web de ${name} (se abre en una pestaña nueva)`}
+							>
+								<img src={logo} alt={name} loading="lazy" />
+							</a>
+						</li>
+					))}
+				</ul>
+				<button
+					type="button"
+					onClick={() => slide(1)}
+					disabled={!canScrollRight}
+					aria-label="Ver más aseguradoras"
+				>
 					<i className="fa-solid fa-chevron-right"></i>
 				</button>
 			</div>
