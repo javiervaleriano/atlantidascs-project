@@ -1,0 +1,182 @@
+@import "../../../assets/css/breakpoints";
+@import "../../../assets/css/colors";
+@import "../../../assets/css/fonts";
+@import "../../../assets/css/layout";
+
+.Section {
+  padding: 0 1rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.Empty {
+  @include header-offset;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.Title {
+  @include header-offset;
+  text-align: center;
+  font-family: $Lora;
+  font-size: 1.3rem;
+  font-weight: 700;
+
+  @include responsive(tablet) {
+    font-size: 1.34375rem;
+  }
+
+  @include responsive(ldesktop) {
+    font-size: 1.5625rem;
+  }
+}
+
+.Subtitle {
+  text-align: center;
+  font-family: $NanumGothic;
+  font-size: 0.95rem;
+  color: $gray;
+  margin: 0.5rem 0 2rem;
+  line-height: 1.5;
+
+  @include responsive(tablet) {
+    font-size: 1rem;
+  }
+}
+
+.EmptyText {
+  font-family: $NanumGothic;
+  font-size: 1rem;
+  color: $gray;
+  margin-top: 1.5rem;
+}
+
+.PartnerSection {
+  margin-bottom: 3rem;
+}
+
+.PartnerHeader {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba($main-green, 0.2);
+}
+
+.PartnerInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+
+  @include responsive(desktop) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    gap: 1.5rem;
+  }
+}
+
+.PartnerLogoWrapper {
+  margin: 0;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 80px;
+  padding: 0.5rem;
+  background-color: $white;
+  border-radius: 8px;
+  border: 1px solid rgba($main-green, 0.15);
+
+  @include responsive(sdesktop) {
+    width: 140px;
+    height: 90px;
+  }
+}
+
+.PartnerLogo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+// Estilo mutuamente excluyente con el logo:
+// si hay logo configurado y carga bien, se muestra el logo;
+// si no hay logo o falla la carga, se muestra el nombre como texto.
+.PartnerNameText {
+  font-family: $Lora;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: $main-green;
+  margin: 0;
+  text-align: center;
+
+  @include responsive(desktop) {
+    font-size: 1.4rem;
+    text-align: left;
+  }
+}
+
+.PartnerDesc {
+  font-family: $NanumGothic;
+  font-size: 0.9rem;
+  color: $gray;
+  margin: 0.5rem 0 0;
+  line-height: 1.4;
+  text-align: center;
+
+  @include responsive(desktop) {
+    text-align: left;
+  }
+}
+
+.ProductsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 280px));
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.ProductCard {
+  text-align: center;
+  background-color: $white;
+  overflow: hidden;
+  padding-bottom: 1rem;
+
+  figure {
+    margin: 0;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.ProductFigure {
+  max-height: 180px;
+
+  img {
+    height: 180px;
+  }
+}
+
+.ProductTitle {
+  font-family: $Lora;
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0.8rem 0 1rem;
+  color: #333;
+}
+
+.SelfBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}

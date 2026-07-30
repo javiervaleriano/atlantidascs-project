@@ -67,25 +67,6 @@ function Home() {
 				</div>
 			</section>
 			<Companies />
-			<section className={classes.ServicesSection}>
-				<h2>Adquiere nuestros mejores productos</h2>
-				<div className={classes.CardsContainer}>
-					{homeProducts.map(({ id, img, imgAlt, title, desc }) => (
-						<Card className={classes.ServiceCard} key={id}>
-							<figure>
-								<img src={img} alt={imgAlt} loading="lazy" />
-							</figure>
-							<h3>{title}</h3>
-							<p>{desc}</p>
-							<CotizarBtn type={id} title={title} className={classes.ServiceButton} />
-						</Card>
-					))}
-				</div>
-				<Link to="/productos" className={classes.ServicesBtn}>
-					Todos los productos
-					<i className="fa-solid fa-chevron-right"></i>
-				</Link>
-			</section>
 			<section className={classes.OfferSection}>
 				<h2>¿Qué te ofrecemos?</h2>
 				<ul className={classes.OfferItemsCont}>
@@ -120,6 +101,40 @@ function Home() {
 						className={classes.OfferItem}
 					/>
 				</ul>
+			</section>
+			<section className={classes.ServicesSection}>
+				<h2>Adquiere nuestros mejores productos</h2>
+				<div className={classes.CardsContainer}>
+					{homeProducts.map(({ id, img, imgAlt, title, desc }) => (
+						<Card className={classes.ServiceCard} key={id}>
+							<figure>
+								<img src={img} alt={imgAlt} loading="lazy" />
+							</figure>
+							<h3>{title}</h3>
+							<p>{desc}</p>
+							<CotizarBtn type={id} title={title} className={classes.ServiceButton} />
+						</Card>
+					))}
+				</div>
+				<Link to="/productos" className={classes.ServicesBtn}>
+					Todos los productos
+					<i className="fa-solid fa-chevron-right"></i>
+				</Link>
+			</section>
+			<section className={classes.SelfServicePromo}>
+				<div className={classes.SelfServicePromoCard}>
+					<span className={classes.SelfServiceBadge}>NUEVO</span>
+					<h2 className={classes.SelfServicePromoTitle}>Cotiza tu RCV en línea</h2>
+					<p className={classes.SelfServicePromoDesc}>
+						Con <strong>Oceánica de Seguros</strong>. Ingresa tus datos y
+						te redirigimos a su plataforma para que completes tu cotización
+						sin esperar a un asesor.
+					</p>
+					<Link to="/autogestion" className={classes.SelfServiceLink}>
+						Ir a Autogestión
+						<i className="fa-solid fa-arrow-right"></i>
+					</Link>
+				</div>
 			</section>
 			<Publicity />
 		</>

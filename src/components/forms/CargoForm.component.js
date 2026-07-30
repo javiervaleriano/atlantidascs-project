@@ -12,7 +12,7 @@ function CargoForm({ asureFlete, onChange }) {
         <input
           type="text"
           name="tipo-de-mercancia"
-          pattern="^[\w\-\s]+$"
+          pattern="^[a-zA-Z0-9_ -]+$"
           title="Introduce el tipo de mercancía correcto"
           onChange={onChange}
           required />

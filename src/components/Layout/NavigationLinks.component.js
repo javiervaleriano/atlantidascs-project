@@ -20,7 +20,14 @@ function NavigationLinks({ className, isVisible }) {
 			</li>
 			<li className="nav-item">
 				<NavLink
-					to="/productos"
+					to="/autogestion"
+					className={({ isActive }) => navLinkActive(isActive)}
+				>
+					Autogestión
+				</NavLink>
+			</li>
+			<li className="nav-item">
+				<NavLink to="/productos"
 					className={({ isActive }) => navLinkActive(isActive)}
 				>
 					Productos

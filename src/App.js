@@ -14,6 +14,7 @@ import PublicRoute from "./routing/PublicRoute";
 const About = lazy(() => import("./pages/about/About.screen")),
 	Contact = lazy(() => import("./pages/contact/Contact.screen")),
 	Products = lazy(() => import("./pages/products/Products.screen.js")),
+	SelfService = lazy(() => import("./pages/self-service/SelfService.screen")),
 	Glossary = lazy(() => import("./components/Glossary.component"));
 
 function App() {
@@ -28,6 +29,9 @@ function App() {
 					<Route path="/productos" element={<PublicRoute />}>
 						<Route index element={<Products />} />
 						<Route path="/productos/glosario" element={<Glossary />} />
+					</Route>
+					<Route path="/autogestion" element={<PublicRoute />}>
+						<Route index element={<SelfService />} />
 					</Route>
 					<Route path="/sobre-atlantida" element={<PublicRoute />}>
 						<Route index element={<About />} />
