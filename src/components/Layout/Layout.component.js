@@ -7,6 +7,8 @@ import WhatsApp from "../Layout/WhatsApp.component.js";
 import Modal from "../Modal.component.js";
 import Footer from "./Footer.component";
 import Header from "./Header.component";
+// CLASSES
+import classes from "./modules/Layout.module.scss";
 
 
 function Layout({ visible, children }) {
@@ -36,9 +38,11 @@ function Layout({ visible, children }) {
 	}, [modalIsOpen, blockScroll, allowScroll]);
 
 	return (
-		<>
+		<div className={classes.LayoutWrapper}>
 			<Header visible={visible} />
-			{children}
+			<main className={classes.MainContent}>
+				{children}
+			</main>
 			<WhatsApp />
 			<Footer />
 			{modalIsOpen && (
@@ -46,7 +50,7 @@ function Layout({ visible, children }) {
 					<ModalContent />
 				</Modal>
 			)}
-		</>
+		</div>
 	);
 }
 

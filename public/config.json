@@ -13,5 +13,16 @@
   "CONTACT_PHONES": [
     { "label": "(0212) 951.50.81", "tel": "+582129515081" },
     { "label": "(0212) 951.73.61", "tel": "+582129517361" }
+  ],
+  "PARTNERS": [
+    {
+      "id": "oceanica",
+      "name": "Oceánica de Seguros",
+      "description": "Cotiza y contrata tu RCV (Responsabilidad Civil) en línea de forma rápida y segura desde su plataforma digital.",
+      "websiteUrl": "https://oceanicadeseguros.com",
+      "logo": "/images/partners/oceanica_seguros_logo.png",
+      "products": ["rcv"],
+      "selfServiceUrl": "https://oceanicadeseguros.com/cotizar-ventas-masivas/cotizar/auto?id=23960&alianza=J306206329"
+    }
   ]
 }

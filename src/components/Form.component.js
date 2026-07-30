@@ -183,7 +183,7 @@ function Form({ formType, typeProduct, title, openedModal }) {
         <input
           type="text"
           name="nombre"
-          pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$"
+          pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü ]+$"
           title="Escribe un nombre válido"
           onChange={changeValueInputHandler}
           required />
@@ -192,7 +192,7 @@ function Form({ formType, typeProduct, title, openedModal }) {
         <input
           type="text"
           name="apellido"
-          pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$"
+          pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü ]+$"
           title="Escribe un apellido válido"
           onChange={changeValueInputHandler}
           required />
@@ -270,7 +270,7 @@ function Form({ formType, typeProduct, title, openedModal }) {
           <input
             type="text"
             name="municipio-otro"
-            pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$"
+            pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü ]+$"
             title="Escribe un municipio válido"
             onChange={changeValueInputHandler}
             required />

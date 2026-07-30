@@ -1,0 +1,33 @@
+@import "../../assets/css/fonts";
+@import "../../assets/css/colors";
+@import "../../assets/css/breakpoints";
+
+.SelfServiceBtn {
+  padding: 0.4rem 0.8rem;
+  font-family: $Roboto;
+  font-weight: 700;
+  font-size: 0.85rem;
+  border: 2px solid $main-green;
+  outline: none;
+  border-radius: 5px;
+  background-color: transparent;
+  color: $main-green;
+  cursor: pointer;
+  transition: all 0.25s;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: $main-green;
+    color: $white;
+  }
+
+  &:active {
+    background-color: darken($main-green, 8%);
+    border-color: darken($main-green, 8%);
+    color: $white;
+  }
+
+  @include responsive(sdesktop) {
+    font-size: 0.9rem;
+  }
+}

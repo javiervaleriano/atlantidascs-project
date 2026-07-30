@@ -21,22 +21,22 @@ import classes from "./modules/Companies.module.scss";
 
 // COMPANIES DATA
 const insurers = [
-	{ id: "banesco", name: "Banesco Seguros", logo: BanescoSeguros, link: "https://www.banescoseguros.com/" },
-	{ id: "atrio", name: "Atrio Seguros", logo: AtrioSeguros, link: "https://atriosegurosweb.com/" },
-	{ id: "estar", name: "Estar Seguros", logo: EstarSeguros, link: "https://www.estarseguros.com/" },
-	{ id: "hispana", name: "Hispana Seguros", logo: HispanaSeguros, link: "https://hispana.com.ve/" },
-	{ id: "venezolana", name: "La Venezolana de Seguros y Vida", logo: VenezolanaSeguros, link: "https://lavenezolanadeseguros.com/" },
-	{ id: "mapfre", name: "MAPFRE", logo: Mapfre, link: "https://www.mapfre.com.ve/" },
-	{ id: "mercantil", name: "Mercantil Seguros", logo: Mercantil, link: "https://www.mercantilseguros.com/" },
-	{ id: "nuevoMundo", name: "Seguros Nuevo Mundo", logo: NuevoMundo, link: "https://www.nuevomundo.com.ve/" },
-	{ id: "oriental", name: "La Oriental de Seguros", logo: Oriental, link: "https://www.laoriental.com/" },
-	{ id: "segurosCaracas", name: "Seguros Caracas", logo: SegurosCaracas, link: "https://www.seguroscaracas.com/" },
-	{ id: "universitas", name: "Seguros Universitas", logo: Universitas, link: "https://www.segurosuniversitas.com/" },
-	{ id: "venezuela", name: "Seguros Venezuela", logo: Venezuela, link: "https://www.segurosvenezuela.com/" },
-	{ id: "oceanica", name: "Oceánica de Seguros", logo: OceanicaSeguros, link: "https://oceanicadeseguros.com/" },
-	{ id: "uniseguros", name: "Uniseguros", logo: Uniseguros, link: "https://uniseguros.com/" },
-	{ id: "real", name: "Real Seguros", logo: RealSeguros, link: "https://real-seguros.com/" },
-	{ id: "lider", name: "Líder de Seguros", logo: LiderSeguros, link: "https://liderdeseguros.com/" },
+	{ id: "banesco", name: "Banesco Seguros", logo: BanescoSeguros, link: "" },
+	{ id: "atrio", name: "Atrio Seguros", logo: AtrioSeguros, link: "" },
+	{ id: "estar", name: "Estar Seguros", logo: EstarSeguros, link: "" },
+	{ id: "hispana", name: "Hispana Seguros", logo: HispanaSeguros, link: "" },
+	{ id: "venezolana", name: "La Venezolana de Seguros y Vida", logo: VenezolanaSeguros, link: "" },
+	{ id: "mapfre", name: "MAPFRE", logo: Mapfre, link: "" },
+	{ id: "mercantil", name: "Mercantil Seguros", logo: Mercantil, link: "" },
+	{ id: "nuevoMundo", name: "Seguros Nuevo Mundo", logo: NuevoMundo, link: "" },
+	{ id: "oriental", name: "La Oriental de Seguros", logo: Oriental, link: "" },
+	{ id: "segurosCaracas", name: "Seguros Caracas", logo: SegurosCaracas, link: "" },
+	{ id: "universitas", name: "Seguros Universitas", logo: Universitas, link: "" },
+	{ id: "venezuela", name: "Seguros Venezuela", logo: Venezuela, link: "" },
+	{ id: "oceanica", name: "Oceánica de Seguros", logo: OceanicaSeguros, link: "" },
+	{ id: "uniseguros", name: "Uniseguros", logo: Uniseguros, link: "" },
+	{ id: "real", name: "Real Seguros", logo: RealSeguros, link: "" },
+	{ id: "lider", name: "Líder de Seguros", logo: LiderSeguros, link: "" },
 ];
 
 function Companies({ justSlider, className }) {
@@ -89,14 +89,14 @@ function Companies({ justSlider, className }) {
 				<ul className={classes.CompaniesContainer} ref={trackRef}>
 					{insurers.map(({ id, name, logo, link }) => (
 						<li key={id} className={classes.CompanyItem}>
-							<a
+							<img src={logo} alt={name} loading="lazy" />
+							{/* <a
 								href={link}
 								target="_blank"
 								rel="noopener noreferrer"
 								aria-label={`Ir al sitio web de ${name} (se abre en una pestaña nueva)`}
-							>
-								<img src={logo} alt={name} loading="lazy" />
-							</a>
+							> */}
+							{/* </a> */}
 						</li>
 					))}
 				</ul>
